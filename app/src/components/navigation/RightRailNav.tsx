@@ -9,9 +9,8 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: 'hero', label: 'Início' },
-  { id: 'services', label: 'Serviços' },
+  { id: 'services', label: 'Como funciona' },
   { id: 'problem', label: 'Desafio' },
-  { id: 'orchestration', label: 'Orquestração' },
   { id: 'framework', label: 'Framework' },
   { id: 'use-cases', label: 'Casos' },
   { id: 'delivery', label: 'Metodologia' },

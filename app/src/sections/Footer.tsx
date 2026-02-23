@@ -1,5 +1,3 @@
-import { Sparkles, BarChart3 } from 'lucide-react';
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -8,20 +6,14 @@ export default function Footer() {
       <div className="container-custom">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo/Brand */}
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 text-white" />
-              </div>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
-            </div>
-            <div>
-              <span className="text-white font-semibold block">AIVANTE</span>
-              <span className="text-xs text-slate-500">Entendimento → Piloto → Escala</span>
-            </div>
-          </div>
+          <a href="#hero" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <img
+              src="/og-image.png"
+              alt="AIVANTE"
+              className="h-9 w-9"
+            />
+            <span className="text-white font-bold text-lg tracking-wide">AIVANTE</span>
+          </a>
 
           {/* Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
@@ -55,7 +47,7 @@ export default function Footer() {
               href="#cta"
               className="text-slate-400 hover:text-white transition-colors"
             >
-              Contato
+              Fale conosco
             </a>
           </nav>
         </div>

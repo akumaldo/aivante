@@ -12,6 +12,7 @@ import Solution from './sections/Solution';
 import Framework from './sections/Framework';
 import UseCases from './sections/UseCases';
 import DeliveryCycle from './sections/DeliveryCycle';
+import Blog from './sections/Blog';
 import CTA from './sections/CTA';
 import FAQ from './sections/FAQ';
 import About from './sections/About';
@@ -56,6 +57,7 @@ function App() {
         <Solution />
         <Framework />
         <UseCases />
+        <Blog />
         <DeliveryCycle />
         <CTA />
         <FAQ />

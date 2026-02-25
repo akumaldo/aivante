@@ -13,6 +13,7 @@ const navItems: NavItem[] = [
   { id: 'problem', label: 'Desafio' },
   { id: 'framework', label: 'Framework' },
   { id: 'use-cases', label: 'Casos' },
+  { id: 'blog', label: 'Insights' },
   { id: 'delivery', label: 'Metodologia' },
   { id: 'cta', label: 'Contato' },
   { id: 'faq', label: 'FAQ' },

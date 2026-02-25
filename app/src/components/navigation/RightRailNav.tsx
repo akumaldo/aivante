@@ -39,23 +39,35 @@ export default function RightRailNav() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: '-10% 0px -50% 0px' }
-    );
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = scrollY + viewportHeight * 0.35;
 
-    navItems.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) observer.observe(element);
-    });
+      let closest: { id: string; distance: number } | null = null;
 
-    return () => observer.disconnect();
+      navItems.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (!element) return;
+
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + scrollY;
+        const elementCenter = elementTop + rect.height / 2;
+        const distance = Math.abs(viewportCenter - elementCenter);
+
+        if (!closest || distance < closest.distance) {
+          closest = { id: item.id, distance };
+        }
+      });
+
+      if (closest) {
+        setActiveSection((closest as { id: string; distance: number }).id);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (isMobile) {

@@ -20,7 +20,7 @@ const navItems: NavItem[] = [
   { id: 'about', label: 'Sobre' },
 ];
 
-const mobileNavItems = ['hero', 'services', 'framework', 'cta', 'about'];
+const mobileNavItems = ['hero', 'services', 'framework', 'blog', 'cta', 'about'];
 
 export default function RightRailNav() {
   const [activeSection, setActiveSection] = useState('hero');

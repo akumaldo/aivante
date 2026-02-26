@@ -9,10 +9,10 @@ export default function Footer() {
           <a href="#hero" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img
               src="/og-image.png"
-              alt="AIVANTE"
+              alt="AIPF"
               className="h-9 w-9"
             />
-            <span className="text-white font-bold text-lg tracking-wide">AIVANTE</span>
+            <span className="text-white font-bold text-lg tracking-wide">AIPF</span>
           </a>
 
           {/* Links */}
@@ -30,13 +30,13 @@ export default function Footer() {
               Como funciona
             </a>
             <a
-              href="mailto:contato@aivante.com.br"
+              href="mailto:contato@aipf.com.br"
               className="text-slate-400 hover:text-white transition-colors"
             >
               Contato
             </a>
             <a
-              href="https://linkedin.com/company/aivante"
+              href="https://linkedin.com/company/aipf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-white transition-colors"
@@ -54,7 +54,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-white/5 text-center">
           <p className="text-slate-500 text-sm">
-            © {currentYear} AIVANTE. Todos os direitos reservados.
+            © {currentYear} AIPF — AI Performance Framework. Todos os direitos reservados.
           </p>
         </div>
       </div>

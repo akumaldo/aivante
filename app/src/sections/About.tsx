@@ -59,7 +59,7 @@ export default function About() {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
                 Bruno Lunardi
               </h2>
-              <p className="text-sm text-slate-500 mb-4">Fundador da AIVANTE</p>
+              <p className="text-sm text-slate-500 mb-4">Fundador da AIPF</p>
               <p className="text-slate-400 leading-relaxed mb-6">
                 Experiência em gestão de sistemas complexos corporativos (Oil&Gas, SAP, Bancos)
                 aplicada à construção de fluxos de IA. Não conecto APIs — traduzo problemas reais
@@ -87,7 +87,7 @@ export default function About() {
 
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://linkedin.com/company/aivante"
+                  href="https://linkedin.com/company/aipf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/50 text-slate-300 hover:bg-slate-700 hover:text-white transition-colors text-sm"
@@ -96,7 +96,7 @@ export default function About() {
                   LinkedIn
                 </a>
                 <a
-                  href="mailto:contato@aivante.com.br"
+                  href="mailto:contato@aipf.com.br"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/50 text-slate-300 hover:bg-slate-700 hover:text-white transition-colors text-sm"
                 >
                   <Mail className="w-4 h-4" />

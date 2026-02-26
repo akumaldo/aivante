@@ -142,23 +142,23 @@ export default function CTA() {
       if (response.ok) {
         setSubmitted(true);
       } else {
-        const subject = encodeURIComponent('[AIVANTE] Solicitação via wizard');
+        const subject = encodeURIComponent('[AIPF] Solicitação via wizard');
         const body = encodeURIComponent(
           `Nome: ${contactData.name}\nEmpresa: ${contactData.company}\nCargo: ${contactData.role}\nÁrea: ${selectedArea}\nEstágio: ${selectedStage}\nDesafio: ${selectedChallenge}\nMensagem: ${contactData.message}`
         );
         window.open(
-          `mailto:contato@aivante.com.br?subject=${subject}&body=${body}`,
+          `mailto:contato@aipf.com.br?subject=${subject}&body=${body}`,
           '_blank'
         );
         setSubmitted(true);
       }
     } catch {
-      const subject = encodeURIComponent('[AIVANTE] Solicitação via wizard');
+      const subject = encodeURIComponent('[AIPF] Solicitação via wizard');
       const body = encodeURIComponent(
         `Nome: ${contactData.name}\nEmpresa: ${contactData.company}\nCargo: ${contactData.role}\nÁrea: ${selectedArea}\nEstágio: ${selectedStage}\nDesafio: ${selectedChallenge}\nMensagem: ${contactData.message}`
       );
       window.open(
-        `mailto:contato@aivante.com.br?subject=${subject}&body=${body}`,
+        `mailto:contato@aipf.com.br?subject=${subject}&body=${body}`,
         '_blank'
       );
       setSubmitted(true);

@@ -210,7 +210,7 @@ export default function Blog() {
                         </ul>
                       </div>
                       <div className={`p-4 rounded-xl ${colors.bg} border ${colors.border}`}>
-                        <h4 className={`text-sm font-semibold ${colors.text} mb-2`}>Visão AIVANTE:</h4>
+                        <h4 className={`text-sm font-semibold ${colors.text} mb-2`}>Visão AIPF:</h4>
                         <p className="text-sm text-slate-300 leading-relaxed italic">
                           "{article.insight}"
                         </p>

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import AuroraBackground from './components/background/AuroraBackground';
 import RightRailNav from './components/navigation/RightRailNav';
+import ChatBubble from './components/chat/ChatBubble';
 
 import Hero from './sections/Hero';
 import Services from './sections/Services';
@@ -64,6 +65,9 @@ function App() {
         <About />
         <Footer />
       </main>
+
+      {/* Chat Assistant */}
+      <ChatBubble />
     </div>
   );
 }

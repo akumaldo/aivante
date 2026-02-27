@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
 import ChatWindow from './ChatWindow';
 
 export default function ChatBubble() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-chat', handleOpen);
+    return () => window.removeEventListener('open-chat', handleOpen);
+  }, []);
 
   return (
     <>

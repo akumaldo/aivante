@@ -18,16 +18,16 @@ export default function Footer() {
           {/* Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <a
-              href="#framework"
+              href="#solution"
               className="text-slate-400 hover:text-cyan-400 transition-colors"
             >
-              Framework
+              Solução
             </a>
             <a
-              href="#services"
+              href="#insights"
               className="text-slate-400 hover:text-violet-400 transition-colors"
             >
-              Como funciona
+              Insights
             </a>
             <a
               href="mailto:contato@aipf.com.br"

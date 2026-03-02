@@ -9,18 +9,16 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: 'hero', label: 'Início' },
-  { id: 'services', label: 'Como funciona' },
   { id: 'problem', label: 'Desafio' },
-  { id: 'framework', label: 'Framework' },
+  { id: 'solution', label: 'Solução' },
   { id: 'use-cases', label: 'Casos' },
-  { id: 'blog', label: 'Insights' },
-  { id: 'delivery', label: 'Metodologia' },
+  { id: 'insights', label: 'Insights' },
   { id: 'cta', label: 'Contato' },
   { id: 'faq', label: 'FAQ' },
   { id: 'about', label: 'Sobre' },
 ];
 
-const mobileNavItems = ['hero', 'services', 'framework', 'blog', 'cta', 'about'];
+const mobileNavItems = ['hero', 'solution', 'insights', 'cta', 'about'];
 
 export default function RightRailNav() {
   const [activeSection, setActiveSection] = useState('hero');

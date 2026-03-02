@@ -1,43 +1,42 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { TrendingDown, DollarSign, ShieldAlert, Brain, Workflow, Gauge } from 'lucide-react';
+import { BarChart3, DollarSign, ShieldAlert, FlaskConical, Compass } from 'lucide-react';
 
 const problems = [
   {
-    icon: Brain,
-    title: 'Agentes que alucinam dados',
-    description: 'IA gerando informações incorretas sem validação, comprometendo decisões de negócio.',
-    solution: 'Orquestração',
+    icon: BarChart3,
+    title: 'Investimos em IA, mas não temos como medir se está dando resultado',
+    description:
+      'Ferramentas contratadas, APIs rodando, equipe usando — mas nenhuma métrica que conecte uso a impacto no negócio. Sem KPIs, é impossível saber se a IA está gerando valor ou apenas atividade.',
+    stat: '61% das PMEs brasileiras não têm orçamento real ou KPIs definidos para IA.',
   },
   {
     icon: DollarSign,
-    title: 'Custos de API fora de controle',
-    description: 'Usar modelos premium para tarefas simples destrói o ROI corporativo.',
-    solution: 'Ambos',
-  },
-  {
-    icon: Gauge,
-    title: 'Sem visibilidade de performance',
-    description: 'Não saber onde a IA está gerando valor ou apenas gerando atividade.',
-    solution: 'Framework',
-  },
-  {
-    icon: Workflow,
-    title: 'Loops infinitos de correções',
-    description: 'Fluxos mal desenhados que exigem retrabalho constante da equipe.',
-    solution: 'Orquestração',
+    title: 'Os custos com IA só crescem e ninguém sabe justificar',
+    description:
+      'Cada nova ferramenta, cada API, cada modelo premium se acumula. O orçamento aumenta mês a mês, mas ninguém consegue apontar o retorno proporcional — porque ninguém mede custo por resultado.',
+    stat: 'Setup e manutenção de IA consomem 30-50% do investimento total, além do custo das ferramentas.',
   },
   {
     icon: ShieldAlert,
-    title: 'Governança entrando tarde',
-    description: 'Riscos e compliance tratados apenas após problemas acontecerem.',
-    solution: 'Ambos',
+    title: 'A equipe não confia na IA — ou usa por conta própria sem controle',
+    description:
+      'De um lado, funcionários que ignoram as ferramentas de IA por desconfiança. Do outro, colaboradores usando ChatGPT com dados confidenciais da empresa sem que TI saiba. Os dois cenários são perigosos.',
+    stat: 'Apenas 20% das PMEs brasileiras têm políticas de governança de dados para IA.',
   },
   {
-    icon: TrendingDown,
-    title: 'Perda de confiança da equipe',
-    description: 'Falta de confiabilidade na operação de IA desmotiva adoção.',
-    solution: 'Ambos',
+    icon: FlaskConical,
+    title: 'Fizemos pilotos, mas nunca passaram de experimento',
+    description:
+      'O piloto funcionou no PowerPoint. Na prática, ninguém sabe como integrar com os sistemas existentes, medir resultado real ou decidir se vale escalar. O piloto morre na PoC.',
+    stat: '62% das empresas experimentam com agentes de IA, mas só 23% passaram de piloto para produção.',
+  },
+  {
+    icon: Compass,
+    title: 'Sabemos que precisamos de IA, mas não sabemos por onde começar',
+    description:
+      'A pressão existe — concorrentes adotando, diretoria perguntando, mercado mudando. Mas são tantas opções, fornecedores e promessas que a paralisia é o resultado mais comum.',
+    stat: '75% dos líderes de PMEs estão otimistas sobre IA, mas a maioria não tem estratégia definida.',
   },
 ];
 
@@ -98,24 +97,22 @@ export default function Problem() {
       <div className="container-custom">
         <div ref={titleRef} className="max-w-3xl mb-16 opacity-0">
           <span className="text-violet-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
-            O Desafio
+            O cenário que você reconhece
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-            A intenção vaga é o maior risco da automação com IA
+            Sua empresa usa IA. Mas sabe se está funcionando?
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed">
-            Muitas empresas tentam automatizar processos complexos dando instruções amplas 
-            a um modelo de linguagem e esperando o melhor. Sistemas de IA são probabilísticos. 
-            Eles precisam de limites, arquiteturas rígidas de validação e roteamento inteligente.
+            88% das organizações brasileiras já usam IA no dia a dia. Apenas 39%
+            viram impacto real no lucro. O problema não é a tecnologia — é o que
+            acontece entre a adoção e o resultado.
           </p>
         </div>
 
         <div ref={cardsRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
-            const solutionColor = problem.solution === 'Framework' ? 'cyan' : 
-                                  problem.solution === 'Orquestração' ? 'violet' : 'gradient';
-            
+
             return (
               <div
                 key={index}
@@ -124,20 +121,15 @@ export default function Problem() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6 text-red-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-white mb-3">
                   {problem.title}
                 </h3>
                 <p className="text-sm text-slate-400 leading-relaxed mb-4">
                   {problem.description}
                 </p>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-500">Solução:</span>
-                  <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                    solutionColor === 'cyan' ? 'bg-cyan-500/20 text-cyan-400' :
-                    solutionColor === 'violet' ? 'bg-violet-500/20 text-violet-400' :
-                    'bg-gradient-to-r from-cyan-500/20 to-violet-500/20 text-slate-300'
-                  }`}>
-                    {problem.solution}
+                <div className="flex items-start gap-2 pt-3 border-t border-white/5">
+                  <span className="text-xs text-amber-400/80 leading-relaxed">
+                    {problem.stat}
                   </span>
                 </div>
               </div>

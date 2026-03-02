@@ -81,17 +81,14 @@ export default function Hero() {
             ref={subheadlineRef}
             className="mt-6 text-xl sm:text-2xl md:text-3xl font-medium text-slate-300 leading-relaxed opacity-0"
           >
-            Da construção do primeiro workflow de IA à gestão de performance
-            em escala — com controle de custo, governança e resultado mensurável.
+            Operamos IA como infraestrutura de performance — com processo estruturado, medição de resultados e calibração contínua na fronteira.
           </h2>
 
           <p
             ref={bodyRef}
             className="mt-8 text-lg text-slate-400 max-w-2xl leading-relaxed opacity-0"
           >
-            Um processo em 3 fases que se adapta ao seu estágio: do entendimento ao piloto,
-            e do piloto à escala — com o <strong className="text-slate-300">AI Performance Framework</strong> como
-            gate que valida resultados antes de expandir.
+            Do entendimento do seu cenário ao primeiro workflow em produção, medimos resultado real antes de escalar.
           </p>
 
           <div ref={buttonsRef} className="mt-10 flex flex-col sm:flex-row gap-4 opacity-0">
@@ -107,9 +104,9 @@ export default function Hero() {
               size="lg"
               variant="outline"
               className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-6 text-base transition-all duration-300"
-              onClick={() => scrollToSection('services')}
+              onClick={() => scrollToSection('solution')}
             >
-              Como funciona
+              Nossa abordagem
               <ChevronDown className="ml-2 w-5 h-5" />
             </Button>
           </div>
@@ -122,7 +119,7 @@ export default function Hero() {
           <div ref={servicesRef} className="mt-16 opacity-0">
             <button
               type="button"
-              onClick={() => scrollToSection('framework')}
+              onClick={() => scrollToSection('solution')}
               className="glass-card rounded-xl p-6 cursor-pointer hover:border-cyan-500/40 transition-all group text-left w-full"
             >
               <div className="flex items-start gap-4">
@@ -137,9 +134,7 @@ export default function Hero() {
                     AI Performance Framework
                   </h3>
                   <p className="text-sm text-slate-400">
-                    O gate entre piloto e escala: 5 pilares executivos que medem IA em produção
-                    e validam se o resultado justifica expandir — vazão, custo por resultado,
-                    conversão em valor, confiabilidade e governança.
+                    Medimos resultado real com nosso AI Performance Framework — 5 dimensões que separam IA que funciona de IA que apenas gera atividade.
                   </p>
                 </div>
               </div>

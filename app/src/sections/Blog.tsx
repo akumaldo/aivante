@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight, TrendingUp, Shield, Users, DollarSign, Brain, AlertTriangle } from 'lucide-react';
+import { ArrowRight, TrendingUp, Shield, Users, DollarSign, Brain, AlertTriangle, Compass, Target, RefreshCw, Eye } from 'lucide-react';
 import { scrollToSection } from '@/lib/utils';
 
 interface Article {
@@ -99,6 +99,66 @@ const articles: Article[] = [
     ],
     insight: 'Você não precisa de um time de engenheiros — precisa de processo e da plataforma certa.',
   },
+  {
+    id: 'frontierops-operar',
+    icon: Compass,
+    color: 'emerald' as const,
+    tag: 'FrontierOps',
+    title: 'O que separa quem usa IA de quem opera com IA',
+    lead: 'A diferença entre "usar uma ferramenta" e "operar um sistema" define quem captura valor de verdade. Operadores calibram continuamente — não aprendem uma vez e aplicam para sempre.',
+    highlights: [
+      'Usar IA é reagir; operar com IA é antecipar e recalibrar',
+      'Operadores constroem modelos mentais atualizados das capacidades e limitações',
+      'A vantagem competitiva está na prática contínua, não no conhecimento pontual',
+    ],
+    insight:
+      'IA não é um projeto com começo e fim — é uma operação contínua que exige calibração constante.',
+  },
+  {
+    id: 'frontierops-failure',
+    icon: Target,
+    color: 'amber' as const,
+    tag: 'FrontierOps',
+    title: 'Failure Models: por que "a IA pode errar" não é um modelo de risco',
+    lead: 'Dizer que "a IA pode errar" é tão útil quanto dizer que "o mercado pode cair". Operadores de fronteira constroem mapas precisos de onde, como e quando a IA falha no seu contexto específico.',
+    highlights: [
+      'Erros modernos da IA são sutis — parecem certos mas não são',
+      'Um Failure Model precisa ser específico por domínio, tarefa e modelo',
+      'A verificação cirúrgica substitui a revisão total — velocidade com segurança',
+    ],
+    insight:
+      'Um operador de fronteira sabe exatamente onde confiar e onde verificar — essa precisão é o que gera velocidade com segurança.',
+  },
+  {
+    id: 'frontierops-calibracao',
+    icon: RefreshCw,
+    color: 'cyan' as const,
+    tag: 'FrontierOps',
+    title: 'A cada atualização de modelo, seus workflows precisam ser recalibrados',
+    lead: 'Modelos de IA evoluem trimestralmente. O que você validou em novembro pode ser obsoleto em fevereiro. Sub-calibrar desperdiça energia humana; sobre-calibrar cria riscos invisíveis.',
+    highlights: [
+      'Capacidades de IA mudam a cada release — o mapa de ontem não serve hoje',
+      'Sub-calibração: você ainda faz manualmente o que a IA já domina',
+      'Sobre-calibração: você confia na IA em áreas onde ela introduziu novas falhas',
+    ],
+    insight:
+      'Calibração não é um evento — é uma prática. Quem não recalibra está operando com um mapa desatualizado.',
+  },
+  {
+    id: 'frontierops-atencao',
+    icon: Eye,
+    color: 'violet' as const,
+    tag: 'FrontierOps',
+    title: 'O desafio não é a IA produzir mais — é saber onde colocar atenção humana',
+    lead: 'Com agentes produzindo 10x mais output, o gargalo não é mais a produção — é a atenção humana. Revisar tudo com a mesma profundidade é o sintoma de quem não calibrou.',
+    highlights: [
+      'A razão output-para-atenção é a nova métrica de produtividade',
+      'Atenção humana deve ser alocada por risco, não distribuída uniformemente',
+      'Sucesso se mede pelo resultado entregue por unidade de atenção investida',
+    ],
+    insight:
+      'Sucesso não se mede por horas trabalhadas, mas pela razão entre resultado entregue e atenção investida.',
+  },
 ];
 
 const colorMap: Record<string, { bg: string; text: string; border: string; dot: string }> = {
@@ -141,7 +201,7 @@ export default function Blog() {
 
   return (
     <section
-      id="blog"
+      id="insights"
       ref={sectionRef}
       className="section-padding relative overflow-hidden"
     >

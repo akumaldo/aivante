@@ -1,87 +1,170 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { Layers, Shield, Coins, LineChart } from 'lucide-react';
+import {
+  Search,
+  Rocket,
+  TrendingUp,
+  Zap,
+  Coins,
+  BarChart3,
+  Server,
+  ShieldCheck,
+  Compass,
+  GitBranch,
+  Focus,
+} from 'lucide-react';
 
-const pillars = [
+const journeyPhases = [
   {
-    icon: Layers,
-    title: 'Decomposição de Domínio',
-    subtitle: 'Domain Translation',
+    number: '01',
+    title: 'Entendimento',
+    description:
+      'Mapeamos seus processos, identificamos onde IA gera resultado real e desenhamos a arquitetura.',
+    icon: Search,
     color: 'cyan',
-    description: 'A IA não automatiza "departamentos", automatiza fluxos. Desenhamos a engenharia reversa do seu processo atual, quebrando requisitos de negócios em System Prompts de alta precisão e limites rigorosos de contexto.',
   },
   {
-    icon: Shield,
-    title: 'Trust Architecture & HITL',
-    subtitle: 'Human-in-the-Loop',
+    number: '02',
+    title: 'Piloto',
+    description:
+      'Colocamos o primeiro workflow em produção com controle, validação e métricas desde o dia 1.',
+    icon: Rocket,
     color: 'violet',
-    description: 'Implementamos arquiteturas Zero-Trust para agentes. Em fluxos críticos, a IA pesquisa, analisa e rascunha, mas o sistema exige um Gate de aprovação humana antes de avançar, eliminando o risco de alucinações em cascata.',
+  },
+  {
+    number: '03',
+    title: 'Escala',
+    description:
+      'Expandimos para novos processos com governança, otimização de custos e monitoramento contínuo.',
+    icon: TrendingUp,
+    color: 'emerald',
+  },
+];
+
+const frameworkPillars = [
+  {
+    icon: Zap,
+    title: 'Vazão de Inteligência',
+    description: 'Quanto trabalho útil a IA está realmente completando.',
+    color: 'cyan',
   },
   {
     icon: Coins,
-    title: 'Otimização de Token Economics',
-    subtitle: 'Cost per Outcome',
-    color: 'emerald',
-    description: 'Usar o modelo mais caro para tarefas simples destrói o ROI. Criamos camadas de roteamento: agentes menores e baratos filtram e estruturam dados, enquanto modelos premium atuam apenas no raciocínio complexo.',
+    title: 'Custo por Resultado',
+    description:
+      'Eficiência econômica real — não custo por token, mas por entrega.',
+    color: 'violet',
   },
   {
-    icon: LineChart,
-    title: 'Evals & Observabilidade',
-    subtitle: 'Telemetria Contínua',
+    icon: BarChart3,
+    title: 'Conversão em Valor',
+    description:
+      'Quanto do que a IA produz se converte em impacto no negócio.',
     color: 'blue',
-    description: 'Não existe IA em produção sem testes automatizados. Construímos painéis de telemetria para que você veja a Vazão de Inteligência, custos exatos por tarefa e taxa de sucesso da operação em tempo real.',
+  },
+  {
+    icon: Server,
+    title: 'Confiabilidade Operacional',
+    description:
+      'A operação com IA é estável e previsível no dia a dia.',
+    color: 'emerald',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Governança e Compliance',
+    description:
+      'Rastreabilidade, auditoria e conformidade para escalar com segurança.',
+    color: 'amber',
+  },
+];
+
+const frontierOpsConcepts = [
+  {
+    icon: Compass,
+    title: 'Calibração',
+    description:
+      'Mantemos um mapa atualizado do que a IA pode e não pode fazer no seu contexto — e recalibramos a cada evolução.',
+    color: 'cyan',
+  },
+  {
+    icon: GitBranch,
+    title: 'Arquitetura de Fluxos',
+    description:
+      'Desenhamos workflows onde humanos e agentes colaboram sem atrito — cada um no que faz melhor.',
+    color: 'violet',
+  },
+  {
+    icon: Focus,
+    title: 'Gestão de Atenção',
+    description:
+      'Direcionamos a atenção humana para onde ela realmente importa — revisão profunda onde há risco, automação onde há confiança.',
+    color: 'emerald',
   },
 ];
 
 const colorMap: Record<string, { bg: string; text: string; border: string }> = {
-  cyan: { bg: 'from-cyan-500/20 to-cyan-600/10', text: 'text-cyan-400', border: 'border-cyan-500/30' },
-  violet: { bg: 'from-violet-500/20 to-violet-600/10', text: 'text-violet-400', border: 'border-violet-500/30' },
-  emerald: { bg: 'from-emerald-500/20 to-emerald-600/10', text: 'text-emerald-400', border: 'border-emerald-500/30' },
-  blue: { bg: 'from-blue-500/20 to-blue-600/10', text: 'text-blue-400', border: 'border-blue-500/30' },
+  cyan: {
+    bg: 'bg-cyan-500/10',
+    text: 'text-cyan-400',
+    border: 'border-cyan-500/20',
+  },
+  violet: {
+    bg: 'bg-violet-500/10',
+    text: 'text-violet-400',
+    border: 'border-violet-500/20',
+  },
+  emerald: {
+    bg: 'bg-emerald-500/10',
+    text: 'text-emerald-400',
+    border: 'border-emerald-500/20',
+  },
+  blue: {
+    bg: 'bg-blue-500/10',
+    text: 'text-blue-400',
+    border: 'border-blue-500/20',
+  },
+  amber: {
+    bg: 'bg-amber-500/10',
+    text: 'text-amber-400',
+    border: 'border-amber-500/20',
+  },
 };
 
 export default function Solution() {
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const pillarsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
+      gsap.utils.toArray<HTMLElement>('.solution-block').forEach((block) => {
+        gsap.from(block, {
+          y: 40,
+          opacity: 0,
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'power2.out',
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            trigger: block,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
-        }
-      );
+        });
+      });
 
-      const items = pillarsRef.current?.querySelectorAll('.pillar-item');
-      if (items) {
-        gsap.fromTo(
-          items,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            stagger: 0.15,
-            ease: 'power3.out',
+      gsap.utils
+        .toArray<HTMLElement>('.solution-card')
+        .forEach((card, i) => {
+          gsap.from(card, {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: 'power2.out',
             scrollTrigger: {
-              trigger: pillarsRef.current,
-              start: 'top 75%',
-              toggleActions: 'play none none reverse',
+              trigger: card,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
             },
-          }
-        );
-      }
+          });
+        });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -89,58 +172,146 @@ export default function Solution() {
 
   return (
     <section
-      id="orchestration"
+      id="solution"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/5 to-transparent pointer-events-none" />
-
-      <div className="container-custom relative z-10">
-        <div ref={contentRef} className="text-center mb-16 max-w-4xl mx-auto opacity-0">
-          <span className="text-violet-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
-            Orquestração de IA
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Opening */}
+        <div className="solution-block text-center mb-20">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
+            Nossa Abordagem
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-            Orquestração de Inteligência baseada em{' '}
-            <span className="text-gradient">Trust Architecture</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            Como Transformamos IA em Resultado
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed">
-            Nós não vendemos "chatbots". Desenvolvemos Integrações de IA e Pipelines Autônomos 
-            projetados para ambientes corporativos. Tratamos a IA como um "ator não confiável" 
-            que precisa operar dentro de um sistema perfeito.
+          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+            Não vendemos tecnologia. Operamos IA como infraestrutura de
+            performance — com processo, medição e calibração contínua.
           </p>
         </div>
 
-        <div ref={pillarsRef} className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {pillars.map((pillar, index) => {
-            const colors = colorMap[pillar.color];
-            const Icon = pillar.icon;
+        {/* Journey: Entendimento → Piloto → Escala */}
+        <div className="solution-block mb-24">
+          <h3 className="text-xl md:text-2xl font-semibold text-white text-center mb-12">
+            A Jornada
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {journeyPhases.map((phase) => {
+              const colors = colorMap[phase.color];
+              const Icon = phase.icon;
+              return (
+                <div
+                  key={phase.number}
+                  className={`solution-card glass-card rounded-2xl p-8 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center`}
+                    >
+                      <Icon className={`w-6 h-6 ${colors.text}`} />
+                    </div>
+                    <div>
+                      <span
+                        className={`text-xs font-mono ${colors.text} tracking-wider`}
+                      >
+                        FASE {phase.number}
+                      </span>
+                      <h4 className="text-lg font-semibold text-white">
+                        {phase.title}
+                      </h4>
+                    </div>
+                  </div>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {phase.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
-            return (
-              <div
-                key={index}
-                className={`pillar-item glass-card rounded-2xl p-6 border ${colors.border} opacity-0 hover:scale-[1.02] transition-all duration-300`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colors.bg} flex items-center justify-center flex-shrink-0`}>
+        {/* AIPF Framework: 5 Pillars */}
+        <div className="solution-block mb-24">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
+              AI Performance Framework
+            </span>
+            <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">
+              Medimos o que importa
+            </h3>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Nosso AI Performance Framework avalia resultados em 5 dimensões —
+              não adoção, não volume de uso, mas impacto real no negócio.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {frameworkPillars.map((pillar, idx) => {
+              const colors = colorMap[pillar.color];
+              const Icon = pillar.icon;
+              return (
+                <div
+                  key={idx}
+                  className={`solution-card glass-card rounded-xl p-6 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div
+                      className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center`}
+                    >
+                      <Icon className={`w-5 h-5 ${colors.text}`} />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white">
+                      {pillar.title}
+                    </h4>
+                  </div>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* FrontierOps */}
+        <div className="solution-block">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
+              Frontier Operations
+            </span>
+            <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">
+              Operando na Fronteira da IA
+            </h3>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Modelos de IA evoluem a cada trimestre. O que funcionava ontem pode
+              ser insuficiente amanhã. FrontierOps é nossa prática de manter sua
+              operação calibrada com o que há de mais avançado — continuamente.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {frontierOpsConcepts.map((concept, idx) => {
+              const colors = colorMap[concept.color];
+              const Icon = concept.icon;
+              return (
+                <div
+                  key={idx}
+                  className={`solution-card glass-card rounded-2xl p-8 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
+                >
+                  <div
+                    className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}
+                  >
                     <Icon className={`w-6 h-6 ${colors.text}`} />
                   </div>
-                  <div>
-                    <span className={`text-xs font-medium ${colors.text} uppercase tracking-wider`}>
-                      {pillar.subtitle}
-                    </span>
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
-                      {pillar.description}
-                    </p>
-                  </div>
+                  <h4 className="text-lg font-semibold text-white mb-3">
+                    {concept.title}
+                  </h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {concept.description}
+                  </p>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -99,6 +99,53 @@ createServer(async (req, res) => {
         res.end(JSON.stringify({ error: err.message }));
       }
     });
+  } else if (req.method === 'POST' && req.url === '/api/send-email') {
+    let body = '';
+    req.on('data', (chunk) => (body += chunk));
+    req.on('end', async () => {
+      try {
+        const leadData = JSON.parse(body);
+        const resendApiKey = process.env.RESEND_API_KEY;
+        const notificationEmail = process.env.NOTIFICATION_EMAIL || 'akumaldo@gmail.com';
+
+        if (!resendApiKey) {
+          console.log('[Dev] Email would be sent (RESEND_API_KEY not set):');
+          console.log(JSON.stringify(leadData, null, 2));
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true, dev: true }));
+          return;
+        }
+
+        const timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'AIPF <onboarding@resend.dev>',
+            to: [notificationEmail],
+            subject: `Novo Lead AIPF — ${leadData.nome}${leadData.empresa ? ` (${leadData.empresa})` : ''}`,
+            html: `<pre>${JSON.stringify(leadData, null, 2)}</pre><p>Recebido em ${timestamp}</p>`,
+          }),
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Failed to send email', details: errText }));
+          return;
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
   } else {
     res.writeHead(404);
     res.end('Not found');

@@ -66,7 +66,21 @@ FLUXO DE QUALIFICAÇÃO (siga esta sequência naturalmente):
 5. Insight: ofereça um insight personalizado usando dados de mercado relevantes para o contexto do visitante
 6. Contato: sugira agendar uma conversa exploratória e peça nome e e-mail
 
-Quando o visitante fornecer nome e e-mail, agradeça e informe que a equipe retornará em até 24h com uma análise personalizada.`;
+WHATSAPP:
+- Se o visitante pedir para falar com alguém, demonstrar urgência, ou preferir contato direto, ofereça o link do WhatsApp: https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar.
+- Use uma frase natural como: "Claro! Se preferir, pode falar direto com nosso time pelo WhatsApp: https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."
+- Ao final da qualificação, depois de coletar os dados, também ofereça o WhatsApp como alternativa
+
+CAPTURA DE LEAD (CRÍTICO — siga exatamente):
+Quando o visitante fornecer nome e e-mail (etapa 6 do fluxo de qualificação), você DEVE incluir no final da sua resposta um bloco JSON oculto no seguinte formato exato:
+
+<!--LEAD_DATA:{"nome":"Nome do Lead","email":"email@exemplo.com","empresa":"Nome da Empresa","area":"Área identificada","maturidade":"Estágio identificado","resumo":"Resumo em 2-3 frases do que foi discutido, incluindo área de interesse, desafio principal e insight oferecido"}:LEAD_DATA-->
+
+Regras do bloco LEAD_DATA:
+- Inclua APENAS UMA VEZ, na resposta em que o visitante confirma nome e e-mail
+- O resumo deve ser objetivo e útil para a equipe comercial entender o contexto
+- Após o bloco JSON, continue a mensagem normalmente agradecendo e mencionando que a equipe retornará em até 24h
+- Também ofereça o WhatsApp: "Se preferir, pode falar direto com nosso time pelo WhatsApp: https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."`;
 
 export default async function handler(req: Request) {
   if (req.method !== 'POST') {

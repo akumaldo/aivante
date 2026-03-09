@@ -55,12 +55,12 @@ const useCases = [
 ];
 
 const colorMap: Record<string, { border: string; text: string; bg: string }> = {
-  cyan: { border: 'border-cyan-500/30', text: 'text-cyan-400', bg: 'bg-cyan-500/10' },
-  violet: { border: 'border-violet-500/30', text: 'text-violet-400', bg: 'bg-violet-500/10' },
-  emerald: { border: 'border-emerald-500/30', text: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-  blue: { border: 'border-blue-500/30', text: 'text-blue-400', bg: 'bg-blue-500/10' },
-  amber: { border: 'border-amber-500/30', text: 'text-amber-400', bg: 'bg-amber-500/10' },
-  rose: { border: 'border-rose-500/30', text: 'text-rose-400', bg: 'bg-rose-500/10' },
+  cyan: { border: 'border-gold/20', text: 'text-gold', bg: 'bg-gold-muted' },
+  violet: { border: 'border-gold/20', text: 'text-gold-light', bg: 'bg-gold-muted' },
+  emerald: { border: 'border-gold/20', text: 'text-gold', bg: 'bg-gold-muted' },
+  blue: { border: 'border-gold/20', text: 'text-gold-dark', bg: 'bg-gold-muted' },
+  amber: { border: 'border-gold/20', text: 'text-gold-light', bg: 'bg-gold-muted' },
+  rose: { border: 'border-gold/20', text: 'text-gold', bg: 'bg-gold-muted' },
 };
 
 export default function UseCases() {
@@ -101,13 +101,13 @@ export default function UseCases() {
     >
       <div className="container-custom">
         <div className="text-center mb-12">
-          <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
+          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
             Aplicações
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif font-normal text-white leading-tight mb-6">
             Onde a orquestração gera maior impacto
           </h2>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+          <p className="text-lg text-text-secondary max-w-3xl mx-auto">
             Casos de uso reais onde Agentic Workflows transformam operações 
             manuais em pipelines autônomos com governança.
           </p>
@@ -121,7 +121,7 @@ export default function UseCases() {
             return (
               <div
                 key={index}
-                className={`usecase-card glass-card rounded-2xl p-6 border ${colors.border} opacity-0 hover:scale-[1.02] transition-all duration-300`}
+                className={`usecase-card card-warm rounded-2xl p-6 border ${colors.border} opacity-0 hover:scale-[1.02] transition-all duration-300`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center`}>
@@ -130,12 +130,12 @@ export default function UseCases() {
                   <h3 className="text-lg font-bold text-white">{useCase.title}</h3>
                 </div>
 
-                <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                <p className="text-sm text-text-secondary leading-relaxed mb-4">
                   {useCase.description}
                 </p>
 
-                <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-slate-500 mb-2">Métricas-chave:</p>
+                <div className="pt-4 border-t border-warm-border">
+                  <p className="text-xs text-text-muted mb-2">Métricas-chave:</p>
                   <div className="flex flex-wrap gap-2">
                     {useCase.metrics.map((metric, i) => (
                       <span

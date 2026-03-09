@@ -40,39 +40,39 @@ export default function CTA() {
       className="section-padding relative overflow-hidden"
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(200,164,94,0.03)] to-transparent pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <div
           ref={cardRef}
-          className="glass rounded-2xl p-8 sm:p-12 max-w-2xl mx-auto opacity-0 text-center"
+          className="card-warm rounded-2xl p-8 sm:p-12 max-w-2xl mx-auto opacity-0 text-center"
         >
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500/20 to-violet-500/20 flex items-center justify-center mx-auto mb-6">
-            <MessageCircle className="w-8 h-8 text-cyan-400" />
+          <div className="w-16 h-16 rounded-full bg-gold-muted flex items-center justify-center mx-auto mb-6">
+            <MessageCircle className="w-8 h-8 text-gold" />
           </div>
 
-          <span className="text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
+          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
             Primeiro Passo
           </span>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-normal text-white leading-tight mb-4">
             Vamos entender seu cenário
           </h2>
 
-          <p className="text-lg text-slate-400 max-w-lg mx-auto mb-8">
+          <p className="text-lg text-text-secondary max-w-lg mx-auto mb-8">
             Converse com nosso assistente para descobrir como IA estruturada
             pode gerar resultados reais no seu negócio.
           </p>
 
           <Button
             onClick={openChat}
-            className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-8 py-6 text-base glow-cyan transition-all duration-300"
+            className="bg-gold hover:bg-gold-light text-warm-black font-semibold px-8 py-6 text-base glow-gold transition-all duration-300"
           >
             Iniciar conversa
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 
-          <p className="text-sm text-slate-500 mt-6">
+          <p className="text-sm text-text-muted mt-6">
             Sem formulários. Uma conversa rápida e personalizada.
           </p>
         </div>

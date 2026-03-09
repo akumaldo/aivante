@@ -32,11 +32,11 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-slate-900">
+    <div className="relative min-h-screen bg-warm-black">
       {/* Skip to content - accessibility */}
       <a
         href="#solution"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-slate-900 focus:rounded-lg focus:font-semibold focus:text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-warm-black focus:rounded-lg focus:font-semibold focus:text-sm"
       >
         Pular para o conteúdo
       </a>

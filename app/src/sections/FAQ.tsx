@@ -84,10 +84,10 @@ export default function FAQ() {
     >
       <div className="container-custom">
         <div className="text-center mb-12">
-          <span className="text-violet-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
+          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
             FAQ
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-white leading-tight">
             Perguntas frequentes
           </h2>
         </div>
@@ -98,12 +98,12 @@ export default function FAQ() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass-card rounded-xl border-0 px-6 data-[state=open]:border-cyan-500/30 transition-colors"
+                className="card-warm rounded-xl border-0 px-6 data-[state=open]:border-gold/30 transition-colors"
               >
-                <AccordionTrigger className="text-left text-white hover:text-cyan-400 py-5 text-base font-medium hover:no-underline">
+                <AccordionTrigger className="text-left text-text-primary hover:text-gold py-5 text-base font-medium hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-slate-400 pb-5 leading-relaxed">
+                <AccordionContent className="text-text-secondary pb-5 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

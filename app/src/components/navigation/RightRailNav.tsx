@@ -70,7 +70,7 @@ export default function RightRailNav() {
 
   if (isMobile) {
     return (
-      <nav className="fixed bottom-0 left-0 right-0 z-50 glass border-t border-white/10" aria-label="Navegação principal">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-warm-surface/90 backdrop-blur-sm border-t border-warm-border" aria-label="Navegação principal">
         <div className="flex justify-around items-center py-3 px-2">
           {mobileNavItems.map((id) => {
             const item = navItems.find((n) => n.id === id);
@@ -82,14 +82,14 @@ export default function RightRailNav() {
                 onClick={() => scrollToSection(id)}
                 className={`flex flex-col items-center gap-1 px-3 py-1 rounded-lg transition-all ${
                   activeSection === id
-                    ? 'text-cyan-400'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'text-gold'
+                    : 'text-text-secondary hover:text-text-primary'
                 }`}
                 aria-current={activeSection === id ? 'true' : undefined}
               >
                 <div
                   className={`w-2 h-2 rounded-full transition-all ${
-                    activeSection === id ? 'bg-cyan-400 scale-125' : 'bg-slate-600'
+                    activeSection === id ? 'bg-gold scale-125' : 'bg-warm-border'
                   }`}
                 />
                 <span className="text-[10px] font-medium">{item.label}</span>
@@ -103,7 +103,7 @@ export default function RightRailNav() {
 
   return (
     <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:block" aria-label="Navegação por seções">
-      <div className="glass rounded-full py-4 px-2 flex flex-col items-center gap-3">
+      <div className="bg-warm-surface/80 backdrop-blur-sm border border-warm-border rounded-full py-4 px-2 flex flex-col items-center gap-3">
         {navItems.map((item) => (
           <div key={item.id} className="relative">
             <button
@@ -112,8 +112,8 @@ export default function RightRailNav() {
               onMouseLeave={() => setHoveredItem(null)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'bg-cyan-400 scale-125 shadow-[0_0_10px_rgba(6,182,212,0.5)]'
-                  : 'bg-slate-600 hover:bg-slate-400'
+                  ? 'bg-gold scale-125 shadow-[0_0_10px_rgba(200,164,94,0.5)]'
+                  : 'bg-warm-border-light hover:bg-text-secondary'
               }`}
               aria-label={item.label}
             />
@@ -126,7 +126,7 @@ export default function RightRailNav() {
                   exit={{ opacity: 0, x: 10 }}
                   className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap"
                 >
-                  <span className="glass px-3 py-1.5 rounded-lg text-xs font-medium text-slate-200">
+                  <span className="bg-warm-surface/90 backdrop-blur-sm border border-warm-border px-3 py-1.5 rounded-lg text-xs font-medium text-text-primary">
                     {item.label}
                   </span>
                 </motion.div>

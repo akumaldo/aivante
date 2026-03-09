@@ -2,59 +2,50 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 border-t border-white/5">
+    <footer className="py-12 border-t border-warm-border">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo/Brand */}
-          <a href="#hero" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <a href="#hero" className="hover:opacity-80 transition-opacity">
             <img
-              src="/og-image.png"
-              alt="AIPF"
-              className="h-9 w-9"
+              src="/logo-full.png"
+              alt="AIPF — Integração e Performance"
+              className="h-16"
             />
-            <span className="text-white font-bold text-lg tracking-wide">AIPF</span>
           </a>
 
           {/* Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <a
               href="#solution"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors"
             >
               Solução
             </a>
             <a
               href="#insights"
-              className="text-slate-400 hover:text-violet-400 transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors"
             >
               Insights
             </a>
             <a
               href="mailto:contato@aipf.com.br"
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors"
             >
               Contato
             </a>
             <a
-              href="https://linkedin.com/company/aipf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
               href="#cta"
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors"
             >
               Fale conosco
             </a>
           </nav>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/5 text-center">
-          <p className="text-slate-500 text-sm">
-            © {currentYear} AIPF — AI Performance Framework. Todos os direitos reservados.
+        <div className="mt-8 pt-8 border-t border-warm-border text-center">
+          <p className="text-text-muted text-sm">
+            © {currentYear} AIPF — Integração e Performance. Todos os direitos reservados.
           </p>
         </div>
       </div>

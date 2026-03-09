@@ -69,15 +69,15 @@ const fragmentShader = `
     float noise3 = snoise(vec3(uv * 1.5 + 200.0, uTime * 0.03));
     float combinedNoise = (noise1 + noise2 * 0.5 + noise3 * 0.25) / 1.75;
 
-    vec3 baseColor = vec3(0.059, 0.086, 0.165);
-    vec3 cyanColor = vec3(0.024, 0.714, 0.831);
-    vec3 violetColor = vec3(0.545, 0.361, 0.965);
-    vec3 blueColor = vec3(0.231, 0.510, 0.965);
+    vec3 baseColor = vec3(0.039, 0.039, 0.031);
+    vec3 goldColor = vec3(0.784, 0.643, 0.369);
+    vec3 amberColor = vec3(0.831, 0.722, 0.478);
+    vec3 warmColor = vec3(0.659, 0.537, 0.243);
 
     vec3 color = baseColor;
-    color = mix(color, cyanColor, smoothstep(0.2, 0.6, combinedNoise) * 0.15);
-    color = mix(color, violetColor, smoothstep(0.3, 0.7, combinedNoise + 0.2) * 0.12);
-    color = mix(color, blueColor, smoothstep(0.1, 0.5, combinedNoise - 0.1) * 0.08);
+    color = mix(color, goldColor, smoothstep(0.2, 0.6, combinedNoise) * 0.08);
+    color = mix(color, amberColor, smoothstep(0.3, 0.7, combinedNoise + 0.2) * 0.06);
+    color = mix(color, warmColor, smoothstep(0.1, 0.5, combinedNoise - 0.1) * 0.04);
 
     float vignette = 1.0 - length(uv - 0.5) * 0.5;
     color *= vignette;

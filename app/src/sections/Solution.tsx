@@ -103,31 +103,11 @@ const frontierOpsConcepts = [
 ];
 
 const colorMap: Record<string, { bg: string; text: string; border: string }> = {
-  cyan: {
-    bg: 'bg-cyan-500/10',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/20',
-  },
-  violet: {
-    bg: 'bg-violet-500/10',
-    text: 'text-violet-400',
-    border: 'border-violet-500/20',
-  },
-  emerald: {
-    bg: 'bg-emerald-500/10',
-    text: 'text-emerald-400',
-    border: 'border-emerald-500/20',
-  },
-  blue: {
-    bg: 'bg-blue-500/10',
-    text: 'text-blue-400',
-    border: 'border-blue-500/20',
-  },
-  amber: {
-    bg: 'bg-amber-500/10',
-    text: 'text-amber-400',
-    border: 'border-amber-500/20',
-  },
+  cyan: { bg: 'bg-gold-muted', text: 'text-gold', border: 'border-gold-dark/20' },
+  violet: { bg: 'bg-gold-muted', text: 'text-gold-light', border: 'border-gold-dark/20' },
+  emerald: { bg: 'bg-gold-muted', text: 'text-gold', border: 'border-gold-dark/20' },
+  blue: { bg: 'bg-gold-muted', text: 'text-gold-dark', border: 'border-gold-dark/20' },
+  amber: { bg: 'bg-gold-muted', text: 'text-gold-light', border: 'border-gold-dark/20' },
 };
 
 export default function Solution() {
@@ -179,13 +159,13 @@ export default function Solution() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Opening */}
         <div className="solution-block text-center mb-20">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase bg-gold-muted text-gold border border-gold-dark/20 mb-6">
             Nossa Abordagem
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-6">
             Como Transformamos IA em Resultado
           </h2>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+          <p className="text-lg text-text-secondary max-w-3xl mx-auto">
             Não vendemos tecnologia. Operamos IA como infraestrutura de
             performance — com processo, medição e calibração contínua.
           </p>
@@ -193,7 +173,7 @@ export default function Solution() {
 
         {/* Journey: Entendimento → Piloto → Escala */}
         <div className="solution-block mb-24">
-          <h3 className="text-xl md:text-2xl font-semibold text-white text-center mb-12">
+          <h3 className="text-xl md:text-2xl font-serif font-normal text-white text-center mb-12">
             A Jornada
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -203,7 +183,7 @@ export default function Solution() {
               return (
                 <div
                   key={phase.number}
-                  className={`solution-card glass-card rounded-2xl p-8 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
+                  className={`solution-card card-warm rounded-2xl p-8 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div
@@ -222,7 +202,7 @@ export default function Solution() {
                       </h4>
                     </div>
                   </div>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-text-secondary text-sm leading-relaxed">
                     {phase.description}
                   </p>
                 </div>
@@ -234,13 +214,13 @@ export default function Solution() {
         {/* AIPF Framework: 5 Pillars */}
         <div className="solution-block mb-24">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-gold-muted text-gold border border-gold-dark/20 mb-4">
               AI Performance Framework
             </span>
-            <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">
+            <h3 className="text-xl md:text-2xl font-serif font-normal text-white mb-4">
               Medimos o que importa
             </h3>
-            <p className="text-slate-400 max-w-2xl mx-auto">
+            <p className="text-text-secondary max-w-2xl mx-auto">
               Nosso AI Performance Framework avalia resultados em 5 dimensões —
               não adoção, não volume de uso, mas impacto real no negócio.
             </p>
@@ -252,7 +232,7 @@ export default function Solution() {
               return (
                 <div
                   key={idx}
-                  className={`solution-card glass-card rounded-xl p-6 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
+                  className={`solution-card card-warm rounded-xl p-6 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div
@@ -264,7 +244,7 @@ export default function Solution() {
                       {pillar.title}
                     </h4>
                   </div>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-text-secondary text-sm leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -276,13 +256,13 @@ export default function Solution() {
         {/* FrontierOps */}
         <div className="solution-block">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider uppercase bg-gold-muted text-gold border border-gold-dark/20 mb-4">
               Frontier Operations
             </span>
-            <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">
+            <h3 className="text-xl md:text-2xl font-serif font-normal text-white mb-4">
               Operando na Fronteira da IA
             </h3>
-            <p className="text-slate-400 max-w-2xl mx-auto">
+            <p className="text-text-secondary max-w-2xl mx-auto">
               Modelos de IA evoluem a cada trimestre. O que funcionava ontem pode
               ser insuficiente amanhã. FrontierOps é nossa prática de manter sua
               operação calibrada com o que há de mais avançado — continuamente.
@@ -295,7 +275,7 @@ export default function Solution() {
               return (
                 <div
                   key={idx}
-                  className={`solution-card glass-card rounded-2xl p-8 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
+                  className={`solution-card card-warm rounded-2xl p-8 border ${colors.border} hover:border-opacity-50 transition-all duration-300`}
                 >
                   <div
                     className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}
@@ -305,7 +285,7 @@ export default function Solution() {
                   <h4 className="text-lg font-semibold text-white mb-3">
                     {concept.title}
                   </h4>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-text-secondary text-sm leading-relaxed">
                     {concept.description}
                   </p>
                 </div>

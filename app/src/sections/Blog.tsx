@@ -162,10 +162,10 @@ const articles: Article[] = [
 ];
 
 const colorMap: Record<string, { bg: string; text: string; border: string; dot: string }> = {
-  cyan: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20', dot: 'bg-cyan-500' },
-  violet: { bg: 'bg-violet-500/10', text: 'text-violet-400', border: 'border-violet-500/20', dot: 'bg-violet-500' },
-  emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', dot: 'bg-emerald-500' },
-  amber: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20', dot: 'bg-amber-500' },
+  cyan: { bg: 'bg-gold-muted', text: 'text-gold', border: 'border-gold/20', dot: 'bg-gold' },
+  violet: { bg: 'bg-gold-muted', text: 'text-gold-light', border: 'border-gold/20', dot: 'bg-gold-light' },
+  emerald: { bg: 'bg-gold-muted', text: 'text-gold', border: 'border-gold/20', dot: 'bg-gold' },
+  amber: { bg: 'bg-gold-muted', text: 'text-gold-dark', border: 'border-gold/20', dot: 'bg-gold-dark' },
 };
 
 export default function Blog() {
@@ -207,13 +207,13 @@ export default function Blog() {
     >
       <div className="container-custom">
         <div className="text-center mb-12">
-          <span className="text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
+          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
             Insights
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif font-normal text-white leading-tight mb-6">
             O cenário da IA no Brasil em 2025-2026
           </h2>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+          <p className="text-lg text-text-secondary max-w-3xl mx-auto">
             Dados e análises sobre adoção, custos, riscos e oportunidades para empresas
             que querem ir além da experimentação e gerar resultado real com IA.
           </p>
@@ -230,7 +230,7 @@ export default function Blog() {
                 key={article.id}
                 type="button"
                 onClick={() => setExpandedId(isExpanded ? null : article.id)}
-                className={`blog-card glass-card rounded-2xl p-6 border ${colors.border} opacity-0 text-left transition-all duration-300 hover:scale-[1.02] ${
+                className={`blog-card card-warm rounded-2xl p-6 border ${colors.border} opacity-0 text-left transition-all duration-300 hover:scale-[1.02] ${
                   isExpanded ? 'md:col-span-2 lg:col-span-3' : ''
                 }`}
               >
@@ -250,19 +250,19 @@ export default function Blog() {
                 </h3>
 
                 {/* Lead */}
-                <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                <p className="text-sm text-text-secondary leading-relaxed mb-4">
                   {article.lead}
                 </p>
 
                 {/* Expanded content */}
                 {isExpanded && (
-                  <div className="mt-4 pt-4 border-t border-white/5">
+                  <div className="mt-4 pt-4 border-t border-warm-border">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="text-sm font-semibold text-white mb-3">Dados relevantes:</h4>
                         <ul className="space-y-2">
                           {article.highlights.map((h, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
+                            <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
                               <span className={`w-1.5 h-1.5 rounded-full ${colors.dot} mt-1.5 flex-shrink-0`} />
                               {h}
                             </li>
@@ -271,7 +271,7 @@ export default function Blog() {
                       </div>
                       <div className={`p-4 rounded-xl ${colors.bg} border ${colors.border}`}>
                         <h4 className={`text-sm font-semibold ${colors.text} mb-2`}>Visão AIPF:</h4>
-                        <p className="text-sm text-slate-300 leading-relaxed italic">
+                        <p className="text-sm text-text-primary leading-relaxed italic">
                           "{article.insight}"
                         </p>
                       </div>
@@ -291,7 +291,7 @@ export default function Blog() {
 
         {/* Source note */}
         <div className="mt-10 text-center">
-          <p className="text-xs text-slate-600">
+          <p className="text-xs text-text-muted">
             Dados baseados em pesquisas IBR, Brasscom, Gartner, Adobe e Microsoft (2024-2026).
           </p>
         </div>
@@ -300,7 +300,7 @@ export default function Blog() {
         <div className="mt-8 text-center">
           <button
             onClick={() => scrollToSection('cta')}
-            className="inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light font-medium transition-colors"
           >
             Quer entender como esses dados se aplicam ao seu negócio?
             <ArrowRight className="w-4 h-4" />

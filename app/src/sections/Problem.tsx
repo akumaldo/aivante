@@ -96,13 +96,13 @@ export default function Problem() {
     >
       <div className="container-custom">
         <div ref={titleRef} className="max-w-3xl mb-16 opacity-0">
-          <span className="text-violet-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
+          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
             O cenário que você reconhece
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif font-normal text-white leading-tight mb-6">
             Sua empresa usa IA. Mas sabe se está funcionando?
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed">
+          <p className="text-lg text-text-secondary leading-relaxed">
             88% das organizações brasileiras já usam IA no dia a dia. Apenas 39%
             viram impacto real no lucro. O problema não é a tecnologia — é o que
             acontece entre a adoção e o resultado.
@@ -116,19 +116,19 @@ export default function Problem() {
             return (
               <div
                 key={index}
-                className="problem-card glass-card rounded-2xl p-6 opacity-0 hover:border-red-500/30 transition-all"
+                className="problem-card card-warm rounded-2xl p-6 opacity-0 transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-red-400" />
+                <div className="w-12 h-12 rounded-xl bg-gold-muted flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-gold" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-3">
                   {problem.title}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                <p className="text-sm text-text-secondary leading-relaxed mb-4">
                   {problem.description}
                 </p>
-                <div className="flex items-start gap-2 pt-3 border-t border-white/5">
-                  <span className="text-xs text-amber-400/80 leading-relaxed">
+                <div className="flex items-start gap-2 pt-3 border-t border-warm-border">
+                  <span className="text-xs text-gold-dark leading-relaxed">
                     {problem.stat}
                   </span>
                 </div>

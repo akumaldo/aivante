@@ -148,28 +148,28 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] flex flex-col rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl shadow-black/40 animate-slide-up">
+    <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] flex flex-col rounded-2xl overflow-hidden border border-warm-border shadow-2xl shadow-black/40 animate-slide-up">
       {/* Backdrop blur background */}
-      <div className="absolute inset-0 backdrop-blur-xl bg-slate-900/90" />
+      <div className="absolute inset-0 backdrop-blur-xl bg-warm-black/90" />
 
       {/* Header */}
-      <div className="relative flex items-center justify-between px-4 py-3 border-b border-slate-700/50">
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-500 to-violet-500" />
+      <div className="relative flex items-center justify-between px-4 py-3 border-b border-warm-border">
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold" />
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center">
-            <MessageCircle className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center">
+            <MessageCircle className="w-4 h-4 text-warm-black" />
           </div>
           <div>
-            <span className="text-sm font-semibold text-white">Assistente AIPF</span>
-            <span className="text-xs text-slate-400 block">AI Performance Framework</span>
+            <span className="text-sm font-semibold text-text-primary">Assistente AIPF</span>
+            <span className="text-xs text-text-muted block">Integração e Performance</span>
           </div>
         </div>
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg hover:bg-slate-800 transition-colors"
+          className="p-1.5 rounded-lg hover:bg-warm-surface transition-colors"
           aria-label="Fechar chat"
         >
-          <X className="w-4 h-4 text-slate-400" />
+          <X className="w-4 h-4 text-text-secondary" />
         </button>
       </div>
 
@@ -187,8 +187,8 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
             <div
               className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                 msg.role === 'user'
-                  ? 'bg-cyan-500/20 text-cyan-50 border border-cyan-500/30'
-                  : 'bg-slate-800/80 text-slate-200 border border-slate-700/50'
+                  ? 'bg-gold-muted text-text-primary border border-gold/20'
+                  : 'bg-warm-surface text-text-primary border border-warm-border'
               }`}
             >
               {msg.content}
@@ -198,11 +198,11 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
 
         {isLoading && messages[messages.length - 1]?.role !== 'assistant' && (
           <div className="flex justify-start">
-            <div className="bg-slate-800/80 border border-slate-700/50 rounded-2xl px-4 py-3">
+            <div className="bg-warm-surface border border-warm-border rounded-2xl px-4 py-3">
               <div className="flex gap-1.5">
-                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:0ms]" />
-                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:150ms]" />
-                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:300ms]" />
+                <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce [animation-delay:0ms]" />
+                <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce [animation-delay:150ms]" />
+                <span className="w-2 h-2 bg-text-secondary rounded-full animate-bounce [animation-delay:300ms]" />
               </div>
             </div>
           </div>
@@ -215,7 +215,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
               <button
                 key={reply.value}
                 onClick={() => handleQuickReply(reply)}
-                className="px-3 py-1.5 rounded-full text-xs font-medium border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all"
+                className="px-3 py-1.5 rounded-full text-xs font-medium border border-gold/30 text-gold hover:bg-gold-muted hover:border-gold/50 transition-all"
               >
                 {reply.label}
               </button>
@@ -230,16 +230,16 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
       {showScrollDown && (
         <button
           onClick={scrollToBottom}
-          className="absolute bottom-16 left-1/2 -translate-x-1/2 p-1.5 rounded-full bg-slate-800 border border-slate-700 shadow-lg z-10"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 p-1.5 rounded-full bg-warm-surface border border-warm-border shadow-lg z-10"
         >
-          <ArrowDown className="w-3.5 h-3.5 text-slate-400" />
+          <ArrowDown className="w-3.5 h-3.5 text-text-secondary" />
         </button>
       )}
 
       {/* Input */}
       <form
         onSubmit={handleSubmit}
-        className="relative flex items-center gap-2 px-3 py-2.5 border-t border-slate-700/50"
+        className="relative flex items-center gap-2 px-3 py-2.5 border-t border-warm-border"
       >
         <input
           ref={inputRef}
@@ -248,12 +248,12 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Digite sua mensagem..."
           disabled={isLoading}
-          className="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 disabled:opacity-50 transition-all"
+          className="flex-1 bg-warm-surface border border-warm-border rounded-xl px-3.5 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 disabled:opacity-50 transition-all"
         />
         <button
           type="submit"
           disabled={!input.trim() || isLoading}
-          className="p-2 rounded-xl bg-cyan-500 text-slate-900 hover:bg-cyan-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="p-2 rounded-xl bg-gold text-warm-black hover:bg-gold-light disabled:opacity-30 disabled:cursor-not-allowed transition-all"
           aria-label="Enviar mensagem"
         >
           {isLoading ? (

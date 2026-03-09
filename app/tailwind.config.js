@@ -4,6 +4,10 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -37,6 +41,27 @@ module.exports = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        gold: {
+          DEFAULT: '#C8A45E',
+          light: '#D4B87A',
+          dark: '#A8893E',
+          muted: 'rgba(200, 164, 94, 0.12)',
+          glow: 'rgba(200, 164, 94, 0.06)',
+        },
+        warm: {
+          black: '#0A0A08',
+          'black-light': '#0F0E0B',
+          surface: '#151412',
+          'surface-raised': '#1C1A17',
+          'surface-hover': '#232019',
+          border: '#2A2621',
+          'border-light': '#3D382F',
+        },
+        text: {
+          primary: '#F2EDE6',
+          secondary: '#A09888',
+          muted: '#6B6156',
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

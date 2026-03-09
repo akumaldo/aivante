@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,34 +6,42 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 217 33% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 217 33% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 187 94% 43%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 258 90% 66%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 187 94% 43%;
+    --background: 40 12% 3%;
+    --foreground: 30 20% 93%;
+    --card: 30 7% 8%;
+    --card-foreground: 30 20% 93%;
+    --popover: 30 7% 8%;
+    --popover-foreground: 30 20% 93%;
+    --primary: 40 50% 57%;
+    --primary-foreground: 40 12% 3%;
+    --secondary: 35 30% 45%;
+    --secondary-foreground: 30 20% 93%;
+    --muted: 30 7% 11%;
+    --muted-foreground: 30 15% 50%;
+    --accent: 40 50% 57%;
+    --accent-foreground: 30 20% 93%;
+    --destructive: 10 55% 53%;
+    --destructive-foreground: 30 20% 93%;
+    --border: 30 10% 15%;
+    --input: 30 10% 15%;
+    --ring: 40 50% 57%;
     --radius: 0.625rem;
-    
-    --cyan: #06b6d4;
-    --violet: #8b5cf6;
-    --blue: #3b82f6;
-    --slate-900: #0f172a;
-    --slate-800: #1e293b;
-    --slate-400: #94a3b8;
-    --slate-50: #f8fafc;
+
+    --black: #0A0A08;
+    --black-warm: #0F0E0B;
+    --surface: #151412;
+    --surface-raised: #1C1A17;
+    --surface-hover: #232019;
+    --border-warm: #2A2621;
+    --border-light: #3D382F;
+    --gold: #C8A45E;
+    --gold-light: #D4B87A;
+    --gold-dark: #A8893E;
+    --gold-muted: rgba(200, 164, 94, 0.12);
+    --gold-glow: rgba(200, 164, 94, 0.06);
+    --text-primary: #F2EDE6;
+    --text-secondary: #A09888;
+    --text-muted: #6B6156;
   }
 }
 
@@ -48,53 +56,35 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
     overflow-x: hidden;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 100%);
+  .text-gold {
+    color: var(--gold);
   }
-  
-  .text-gradient-blue {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
-  }
-  
-  .glass {
-    @apply backdrop-blur-xl;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .glass-card {
-    @apply backdrop-blur-md;
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+
+  .card-warm {
+    background: var(--surface);
+    border: 1px solid var(--border-warm);
     transition: all 0.3s ease;
   }
-  
-  .glass-card:hover {
-    background: rgba(30, 41, 59, 0.6);
-    border-color: rgba(6, 182, 212, 0.4);
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
+
+  .card-warm:hover {
+    border-color: var(--gold-dark);
+    box-shadow: 0 0 20px var(--gold-glow);
   }
-  
-  .glow-cyan {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 40px rgba(6, 182, 212, 0.1);
+
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(200, 164, 94, 0.15), 0 0 40px rgba(200, 164, 94, 0.05);
   }
-  
-  .glow-violet {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
-  }
-  
+
   .section-padding {
     @apply py-24 md:py-32;
   }
-  
+
   .container-custom {
     @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
@@ -106,16 +96,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--slate-900);
+  background: var(--black);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--slate-800);
+  background: var(--border-warm);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--slate-400);
+  background: var(--border-light);
 }
 
 /* Animation utilities */
@@ -172,6 +162,6 @@
 /* Form input focus */
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200, 164, 94, 0.2);
 }

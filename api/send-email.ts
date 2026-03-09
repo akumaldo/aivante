@@ -2,6 +2,15 @@ export const config = {
   runtime: 'edge',
 };
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 interface LeadPayload {
   nome: string;
   email: string;
@@ -53,29 +62,29 @@ export default async function handler(req: Request) {
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
             <td style="color: #999; padding: 8px 0; width: 120px; vertical-align: top;">Nome:</td>
-            <td style="color: #f2ede6; padding: 8px 0;">${lead.nome}</td>
+            <td style="color: #f2ede6; padding: 8px 0;">${escapeHtml(lead.nome)}</td>
           </tr>
           <tr>
             <td style="color: #999; padding: 8px 0; vertical-align: top;">Email:</td>
-            <td style="color: #f2ede6; padding: 8px 0;"><a href="mailto:${lead.email}" style="color: #C8A45E;">${lead.email}</a></td>
+            <td style="color: #f2ede6; padding: 8px 0;"><a href="mailto:${escapeHtml(lead.email)}" style="color: #C8A45E;">${escapeHtml(lead.email)}</a></td>
           </tr>
           <tr>
             <td style="color: #999; padding: 8px 0; vertical-align: top;">Empresa:</td>
-            <td style="color: #f2ede6; padding: 8px 0;">${lead.empresa || 'Não informado'}</td>
+            <td style="color: #f2ede6; padding: 8px 0;">${lead.empresa ? escapeHtml(lead.empresa) : 'Não informado'}</td>
           </tr>
           <tr>
             <td style="color: #999; padding: 8px 0; vertical-align: top;">Área:</td>
-            <td style="color: #f2ede6; padding: 8px 0;">${lead.area || 'Não informado'}</td>
+            <td style="color: #f2ede6; padding: 8px 0;">${lead.area ? escapeHtml(lead.area) : 'Não informado'}</td>
           </tr>
           <tr>
             <td style="color: #999; padding: 8px 0; vertical-align: top;">Maturidade:</td>
-            <td style="color: #f2ede6; padding: 8px 0;">${lead.maturidade || 'Não informado'}</td>
+            <td style="color: #f2ede6; padding: 8px 0;">${lead.maturidade ? escapeHtml(lead.maturidade) : 'Não informado'}</td>
           </tr>
         </table>
 
         <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #333;">
           <h2 style="color: #C8A45E; font-size: 16px; margin: 0 0 8px 0;">Resumo da Conversa</h2>
-          <p style="color: #f2ede6; line-height: 1.6; margin: 0;">${lead.resumo || 'Sem resumo disponível'}</p>
+          <p style="color: #f2ede6; line-height: 1.6; margin: 0;">${lead.resumo ? escapeHtml(lead.resumo) : 'Sem resumo disponível'}</p>
         </div>
 
         <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid #333; color: #666; font-size: 12px;">
@@ -95,7 +104,7 @@ export default async function handler(req: Request) {
       body: JSON.stringify({
         from: 'AIPF <onboarding@resend.dev>',
         to: [notificationEmail],
-        subject: `Novo Lead AIPF — ${lead.nome}${lead.empresa ? ` (${lead.empresa})` : ''}`,
+        subject: `Novo Lead AIPF — ${escapeHtml(lead.nome)}${lead.empresa ? ` (${escapeHtml(lead.empresa)})` : ''}`,
         html: htmlBody,
       }),
     });

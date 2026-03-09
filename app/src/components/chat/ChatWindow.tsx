@@ -26,6 +26,55 @@ const AREA_REPLIES: QuickReply[] = [
   { label: 'Tecnologia', value: 'Tecnologia / Dados' },
 ];
 
+const LEAD_DATA_REGEX = /<!--LEAD_DATA:(.*?):LEAD_DATA-->/s;
+
+function extractLeadData(content: string): { leadData: Record<string, string> | null; cleanContent: string } {
+  const match = content.match(LEAD_DATA_REGEX);
+  if (!match) return { leadData: null, cleanContent: content };
+
+  try {
+    const leadData = JSON.parse(match[1]);
+    const cleanContent = content.replace(LEAD_DATA_REGEX, '').trim();
+    return { leadData, cleanContent };
+  } catch {
+    return { leadData: null, cleanContent: content };
+  }
+}
+
+async function sendLeadEmail(leadData: Record<string, string>) {
+  try {
+    await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadData),
+    });
+  } catch {
+    // Silent fail — email sending should not disrupt user experience
+  }
+}
+
+function renderMessageContent(content: string) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = content.split(urlRegex);
+
+  return parts.map((part, i) => {
+    if (part.match(/^https?:\/\//)) {
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold underline underline-offset-2 hover:text-gold-light transition-colors break-all"
+        >
+          {part.includes('wa.me') ? 'Falar pelo WhatsApp' : part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 export default function ChatWindow({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [input, setInput] = useState('');
@@ -35,6 +84,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [emailSent, setEmailSent] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -119,6 +169,22 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
           }
         }
       }
+
+      // After streaming completes, check for lead data
+      const { leadData, cleanContent } = extractLeadData(assistantContent);
+      if (leadData && !emailSent) {
+        setEmailSent(true);
+        sendLeadEmail(leadData);
+        // Update message to show clean content (without the hidden JSON)
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
+            role: 'assistant',
+            content: cleanContent,
+          };
+          return updated;
+        });
+      }
     } catch {
       const errorMsg =
         'Desculpe, tive um problema ao processar sua mensagem. Tente novamente ou entre em contato pelo email contato@aipf.com.br.';
@@ -191,7 +257,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
                   : 'bg-warm-surface text-text-primary border border-warm-border'
               }`}
             >
-              {msg.content}
+              {renderMessageContent(msg.content)}
             </div>
           </div>
         ))}

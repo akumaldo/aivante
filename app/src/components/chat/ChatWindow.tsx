@@ -154,11 +154,13 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
               const delta = parsed.choices?.[0]?.delta?.content;
               if (delta) {
                 assistantContent += delta;
+                // Strip any partial or complete LEAD_DATA marker from display
+                const displayContent = assistantContent.replace(/<!--LEAD_DATA:[\s\S]*?(:LEAD_DATA-->)?$/, '').trim();
                 setMessages((prev) => {
                   const updated = [...prev];
                   updated[updated.length - 1] = {
                     role: 'assistant',
-                    content: assistantContent,
+                    content: displayContent,
                   };
                   return updated;
                 });

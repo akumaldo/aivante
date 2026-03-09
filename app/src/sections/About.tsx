@@ -40,14 +40,14 @@ export default function About() {
           className="max-w-4xl mx-auto card-warm rounded-3xl p-8 md:p-12 opacity-0"
         >
           <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
-            {/* Avatar */}
+            {/* Photo */}
             <div className="mx-auto md:mx-0">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl bg-gradient-to-br from-gold/30 via-gold-dark/30 to-gold-light/30 flex items-center justify-center">
-                <div className="w-28 h-28 md:w-44 md:h-44 rounded-xl bg-warm-surface flex items-center justify-center">
-                  <span className="text-3xl md:text-4xl font-bold text-gold tracking-tight">
-                    BL
-                  </span>
-                </div>
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl bg-gradient-to-br from-gold/30 via-gold-dark/30 to-gold-light/30 p-1">
+                <img
+                  src="/bruno-lunardi.png"
+                  alt="Bruno Lunardi"
+                  className="w-full h-full rounded-xl object-cover"
+                />
               </div>
             </div>
 
@@ -59,12 +59,13 @@ export default function About() {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
                 Bruno Lunardi
               </h2>
-              <p className="text-sm text-text-muted mb-4">Fundador da AIPF</p>
+              <p className="text-sm text-text-muted mb-4">Fundador da AIPF | Engenharia e Performance em IA</p>
               <p className="text-text-secondary leading-relaxed mb-6">
-                Experiência em gestão de sistemas complexos corporativos (Oil&Gas, SAP, Bancos)
-                aplicada à construção de fluxos de IA. Não conecto APIs — traduzo problemas reais
-                de negócio em arquiteturas de IA com validação rigorosa, controle de custos
-                e resultados mensuráveis desde a primeira entrega.
+                A experiência lidando com sistemas de alta complexidade moldou a forma como
+                enxergo a Inteligência Artificial: ela precisa de base sólida e dar retorno claro.
+                Não sou um integrador de APIs. Construo e gerencio fluxos de IA focados em resolver
+                gargalos reais de negócio através do framework AIPF. O resultado é uma arquitetura
+                desenhada para oferecer precisão, controle de custos e impacto operacional imediato.
               </p>
 
               {/* Services */}

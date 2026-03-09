@@ -189,7 +189,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
       }
     } catch {
       const errorMsg =
-        'Desculpe, tive um problema ao processar sua mensagem. Tente novamente ou entre em contato pelo email contato@aipf.com.br.';
+        'Desculpe, tive um problema ao processar sua mensagem. Tente novamente ou fale direto pelo WhatsApp: https://wa.me/5511973582931';
       setMessages((prev) => {
         const updated = [...prev];
         const last = updated[updated.length - 1];

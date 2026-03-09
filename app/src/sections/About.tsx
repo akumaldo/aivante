@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { Mail, Calendar, BarChart3, Sparkles } from 'lucide-react';
+import { MessageCircle, Calendar, BarChart3, Sparkles } from 'lucide-react';
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -87,11 +87,13 @@ export default function About() {
 
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="mailto:contato@aipf.com.br"
+                  href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-warm-surface-raised text-text-secondary hover:bg-warm-surface-hover hover:text-text-primary transition-colors text-sm"
                 >
-                  <Mail className="w-4 h-4" />
-                  E-mail
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp
                 </a>
                 <a
                   href="#cta"

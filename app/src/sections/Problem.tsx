@@ -1,55 +1,54 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { BarChart3, DollarSign, ShieldAlert, FlaskConical, Compass } from 'lucide-react';
 
 const problems = [
   {
-    icon: BarChart3,
-    title: 'Investimos em IA, mas não temos como medir se está dando resultado',
+    number: '01',
+    title: 'Sem métricas de impacto',
     description:
-      'Ferramentas contratadas, APIs rodando, equipe usando — mas nenhuma métrica que conecte uso a impacto no negócio. Sem KPIs, é impossível saber se a IA está gerando valor ou apenas atividade.',
+      'Ferramentas contratadas, APIs rodando, equipe usando — mas nenhuma métrica que conecte uso a impacto no negócio.',
     stat: '61% das PMEs brasileiras não têm orçamento real ou KPIs definidos para IA.',
   },
   {
-    icon: DollarSign,
-    title: 'Os custos com IA só crescem e ninguém sabe justificar',
+    number: '02',
+    title: 'Custos sem justificativa',
     description:
-      'Cada nova ferramenta, cada API, cada modelo premium se acumula. O orçamento aumenta mês a mês, mas ninguém consegue apontar o retorno proporcional — porque ninguém mede custo por resultado.',
-    stat: 'Setup e manutenção de IA consomem 30-50% do investimento total, além do custo das ferramentas.',
+      'Cada nova ferramenta se acumula. O orçamento cresce mês a mês, mas ninguém consegue apontar o retorno — porque ninguém mede custo por resultado.',
+    stat: 'Setup e manutenção consomem 30–50% do investimento total.',
   },
   {
-    icon: ShieldAlert,
-    title: 'A equipe não confia na IA — ou usa por conta própria sem controle',
+    number: '03',
+    title: 'Confiança frágil',
     description:
-      'De um lado, funcionários que ignoram as ferramentas de IA por desconfiança. Do outro, colaboradores usando ChatGPT com dados confidenciais da empresa sem que TI saiba. Os dois cenários são perigosos.',
-    stat: 'Apenas 20% das PMEs brasileiras têm políticas de governança de dados para IA.',
+      'Funcionários ignoram as ferramentas por desconfiança — ou usam ChatGPT com dados confidenciais sem que TI saiba. Os dois cenários são perigosos.',
+    stat: 'Apenas 20% das PMEs têm políticas de governança de dados para IA.',
   },
   {
-    icon: FlaskConical,
-    title: 'Fizemos pilotos, mas nunca passaram de experimento',
+    number: '04',
+    title: 'Pilotos que nunca escalam',
     description:
-      'O piloto funcionou no PowerPoint. Na prática, ninguém sabe como integrar com os sistemas existentes, medir resultado real ou decidir se vale escalar. O piloto morre na PoC.',
-    stat: '62% das empresas experimentam com agentes de IA, mas só 23% passaram de piloto para produção.',
+      'O piloto funcionou no PowerPoint. Na prática, ninguém sabe como integrar, medir resultado real ou decidir se vale escalar.',
+    stat: '62% experimentam com agentes de IA, mas só 23% passaram de piloto para produção.',
   },
   {
-    icon: Compass,
-    title: 'Sabemos que precisamos de IA, mas não sabemos por onde começar',
+    number: '05',
+    title: 'Paralisia estratégica',
     description:
-      'A pressão existe — concorrentes adotando, diretoria perguntando, mercado mudando. Mas são tantas opções, fornecedores e promessas que a paralisia é o resultado mais comum.',
-    stat: '75% dos líderes de PMEs estão otimistas sobre IA, mas a maioria não tem estratégia definida.',
+      'A pressão existe — concorrentes adotando, diretoria perguntando. Mas são tantas opções e promessas que a paralisia é o resultado mais comum.',
+    stat: '75% dos líderes estão otimistas sobre IA, mas a maioria não tem estratégia.',
   },
 ];
 
 export default function Problem() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         titleRef.current,
-        { y: 50, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -63,21 +62,20 @@ export default function Problem() {
         }
       );
 
-      const cards = cardsRef.current?.querySelectorAll('.problem-card');
-      if (cards) {
+      const items = itemsRef.current?.querySelectorAll('.problem-item');
+      if (items) {
         gsap.fromTo(
-          cards,
-          { y: 60, opacity: 0, scale: 0.95 },
+          items,
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: 'back.out(1.4)',
+            duration: 0.6,
+            stagger: 0.08,
+            ease: 'power3.out',
             scrollTrigger: {
-              trigger: cardsRef.current,
-              start: 'top 75%',
+              trigger: itemsRef.current,
+              start: 'top 80%',
               toggleActions: 'play none none reverse',
             },
           }
@@ -92,49 +90,48 @@ export default function Problem() {
     <section
       id="problem"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="py-20 md:py-28 border-b border-warm-border"
     >
-      <div className="container-custom">
-        <div ref={titleRef} className="max-w-3xl mb-16 opacity-0">
-          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div ref={titleRef} className="max-w-2xl mb-16 opacity-0">
+          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
+            <span className="w-8 h-px bg-gold" />
             O cenário que você reconhece
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif font-normal text-white leading-tight mb-6">
-            Sua empresa usa IA. Mas sabe se está funcionando?
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-white leading-tight mb-6">
+            Sua empresa usa IA.
+            <br />
+            Mas sabe se está funcionando?
           </h2>
-          <p className="text-lg text-text-secondary leading-relaxed">
+          <p className="text-text-secondary leading-relaxed">
             88% das organizações brasileiras já usam IA no dia a dia. Apenas 39%
             viram impacto real no lucro. O problema não é a tecnologia — é o que
             acontece entre a adoção e o resultado.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {problems.map((problem, index) => {
-            const Icon = problem.icon;
-
-            return (
-              <div
-                key={index}
-                className="problem-card card-warm rounded-2xl p-6 opacity-0 transition-all"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gold-muted flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-gold" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-3">
+        <div ref={itemsRef} className="space-y-0">
+          {problems.map((problem) => (
+            <div
+              key={problem.number}
+              className="problem-item opacity-0 grid md:grid-cols-[3rem_1fr_1fr] gap-4 md:gap-8 py-8 border-t border-warm-border group"
+            >
+              <span className="text-sm font-mono text-text-muted self-start pt-0.5">
+                {problem.number}
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-gold transition-colors duration-300">
                   {problem.title}
                 </h3>
-                <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {problem.description}
                 </p>
-                <div className="flex items-start gap-2 pt-3 border-t border-warm-border">
-                  <span className="text-xs text-gold-dark leading-relaxed">
-                    {problem.stat}
-                  </span>
-                </div>
               </div>
-            );
-          })}
+              <p className="text-sm text-text-muted leading-relaxed italic md:text-right">
+                {problem.stat}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

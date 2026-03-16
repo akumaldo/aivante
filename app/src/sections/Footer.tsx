@@ -1,53 +1,56 @@
+import { scrollToSection } from '@/lib/utils';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 border-t border-warm-border">
-      <div className="container-custom">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo/Brand */}
-          <a href="#hero" className="hover:opacity-80 transition-opacity">
+    <footer className="py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <button
+            onClick={() => scrollToSection('hero')}
+            className="hover:opacity-80 transition-opacity"
+          >
             <img
               src="/logo-full.png"
-              alt="AIPF — Integração e Performance"
-              className="h-16"
+              alt="AINOVA"
+              className="h-14"
             />
-          </a>
+          </button>
 
-          {/* Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <a
-              href="#solution"
+          <nav className="flex flex-wrap items-center gap-8 text-sm">
+            <button
+              onClick={() => scrollToSection('solution')}
               className="text-text-secondary hover:text-gold transition-colors"
             >
               Solução
-            </a>
-            <a
-              href="#insights"
+            </button>
+            <button
+              onClick={() => scrollToSection('use-cases')}
+              className="text-text-secondary hover:text-gold transition-colors"
+            >
+              Aplicações
+            </button>
+            <button
+              onClick={() => scrollToSection('insights')}
               className="text-text-secondary hover:text-gold transition-colors"
             >
               Insights
-            </a>
+            </button>
             <a
-              href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."
+              href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AINOVA e gostaria de conversar."
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-secondary hover:text-gold transition-colors"
             >
               Contato
             </a>
-            <a
-              href="#cta"
-              className="text-text-secondary hover:text-gold transition-colors"
-            >
-              Fale conosco
-            </a>
           </nav>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-warm-border text-center">
-          <p className="text-text-muted text-sm">
-            © {currentYear} AIPF — Integração e Performance. Todos os direitos reservados.
+        <div className="mt-12 pt-8 border-t border-warm-border">
+          <p className="text-text-muted text-xs">
+            &copy; {currentYear} AIPF — Integração e Performance. Todos os direitos reservados.
           </p>
         </div>
       </div>

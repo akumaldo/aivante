@@ -1,12 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight, TrendingUp, Shield, Users, DollarSign, Brain, AlertTriangle, Compass, Target, RefreshCw, Eye } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { scrollToSection } from '@/lib/utils';
 
 interface Article {
   id: string;
-  icon: React.ElementType;
-  color: string;
   tag: string;
   title: string;
   lead: string;
@@ -17,8 +15,6 @@ interface Article {
 const articles: Article[] = [
   {
     id: 'investimento',
-    icon: TrendingUp,
-    color: 'cyan',
     tag: 'Mercado',
     title: '80% das empresas brasileiras de médio porte vão aumentar investimento em TI',
     lead: 'O Brasil ocupa a segunda posição global em intenção de investimento tecnológico. A projeção da Brasscom aponta R$ 774 bilhões em transformação digital até 2028.',
@@ -31,11 +27,9 @@ const articles: Article[] = [
   },
   {
     id: 'gap',
-    icon: AlertTriangle,
-    color: 'amber',
     tag: 'Desafio',
     title: 'Apenas 39% das empresas que usam IA viram impacto real no lucro',
-    lead: 'O gap entre adoção e resultado é o maior desafio do mercado brasileiro. Empresas de alto desempenho dedicam mais de 20% do orçamento digital exclusivamente para IA, com redesenho completo de fluxos.',
+    lead: 'O gap entre adoção e resultado é o maior desafio do mercado brasileiro. Empresas de alto desempenho dedicam mais de 20% do orçamento digital exclusivamente para IA.',
     highlights: [
       '61% das PMEs não têm orçamento real ou KPIs definidos para IA',
       'Setup e higienização de dados consomem 30-50% do investimento',
@@ -45,11 +39,9 @@ const articles: Article[] = [
   },
   {
     id: 'agentes',
-    icon: Brain,
-    color: 'violet',
     tag: 'Tendência',
     title: 'De assistentes passivos a agentes autônomos orquestrados',
-    lead: '62% das empresas já experimentam com agentes de IA, e 23% os implementaram em escala. A previsão do Gartner é que 33% das aplicações empresariais usarão agentes até 2028.',
+    lead: '62% das empresas já experimentam com agentes de IA, e 23% os implementaram em escala. A previsão é que 33% das aplicações empresariais usarão agentes até 2028.',
     highlights: [
       'Agentes orquestrados: múltiplos agentes especializados sob um mestre',
       'RAG como padrão para ancorar respostas em dados proprietários',
@@ -59,11 +51,9 @@ const articles: Article[] = [
   },
   {
     id: 'seguranca',
-    icon: Shield,
-    color: 'emerald',
     tag: 'Governança',
-    title: 'Shadow AI e LGPD: apenas 20% das PMEs têm políticas de governança de dados',
-    lead: 'Funcionários submetendo dados confidenciais a plataformas de IA sem aprovação da TI é o maior risco invisível. Zero Trust Architecture e soberania de dados são exigências, não opcionais.',
+    title: 'Shadow AI e LGPD: apenas 20% das PMEs têm políticas de governança',
+    lead: 'Funcionários submetendo dados confidenciais a plataformas de IA sem aprovação da TI é o maior risco invisível.',
     highlights: [
       'Shadow AI expõe empresas a violações da LGPD e multas da ANPD',
       'PL 2338/2023 avança para regulamentar uso ético de IA no Brasil',
@@ -73,11 +63,9 @@ const articles: Article[] = [
   },
   {
     id: 'pmes',
-    icon: DollarSign,
-    color: 'cyan',
     tag: 'PMEs',
-    title: 'PMEs alcançam ROI de 100-200% com automações pontuais bem orquestradas',
-    lead: '75% dos líderes de PMEs no Brasil estão otimistas sobre IA. O break-even de projetos focados acontece em 1 a 3 meses. Economia média anual reportada: R$ 25.000 por empresa.',
+    title: 'PMEs alcançam ROI de 100–200% com automações pontuais bem orquestradas',
+    lead: '75% dos líderes de PMEs no Brasil estão otimistas sobre IA. O break-even de projetos focados acontece em 1 a 3 meses.',
     highlights: [
       'Faixa de entrada: R$ 100-500/mês para ferramentas básicas',
       'Faixa intermediária: R$ 300-1.500/mês para chatbots e CRM',
@@ -87,11 +75,9 @@ const articles: Article[] = [
   },
   {
     id: 'talentos',
-    icon: Users,
-    color: 'violet',
     tag: 'Capital humano',
     title: 'Brasil tem déficit de 30% em profissionais de TI — e isso é uma oportunidade',
-    lead: '84% das empresas relatam dificuldade para contratar. A demanda supera a oferta em 200 mil profissionais. AI Literacy em 4 níveis está se tornando o diferencial competitivo.',
+    lead: '84% das empresas relatam dificuldade para contratar. A demanda supera a oferta em 200 mil profissionais.',
     highlights: [
       '52% apontam liderança engajada como fator mais crítico para sucesso',
       'Low-Code/No-Code cresce 30% ao ano, habilitando Citizen Developers',
@@ -101,90 +87,88 @@ const articles: Article[] = [
   },
   {
     id: 'frontierops-operar',
-    icon: Compass,
-    color: 'emerald' as const,
     tag: 'FrontierOps',
     title: 'O que separa quem usa IA de quem opera com IA',
-    lead: 'A diferença entre "usar uma ferramenta" e "operar um sistema" define quem captura valor de verdade. Operadores calibram continuamente — não aprendem uma vez e aplicam para sempre.',
+    lead: 'A diferença entre "usar uma ferramenta" e "operar um sistema" define quem captura valor de verdade.',
     highlights: [
       'Usar IA é reagir; operar com IA é antecipar e recalibrar',
       'Operadores constroem modelos mentais atualizados das capacidades e limitações',
       'A vantagem competitiva está na prática contínua, não no conhecimento pontual',
     ],
-    insight:
-      'IA não é um projeto com começo e fim — é uma operação contínua que exige calibração constante.',
+    insight: 'IA não é um projeto com começo e fim — é uma operação contínua que exige calibração constante.',
   },
   {
     id: 'frontierops-failure',
-    icon: Target,
-    color: 'amber' as const,
     tag: 'FrontierOps',
     title: 'Failure Models: por que "a IA pode errar" não é um modelo de risco',
-    lead: 'Dizer que "a IA pode errar" é tão útil quanto dizer que "o mercado pode cair". Operadores de fronteira constroem mapas precisos de onde, como e quando a IA falha no seu contexto específico.',
+    lead: 'Dizer que "a IA pode errar" é tão útil quanto dizer que "o mercado pode cair". Operadores constroem mapas precisos de onde e quando a IA falha.',
     highlights: [
       'Erros modernos da IA são sutis — parecem certos mas não são',
       'Um Failure Model precisa ser específico por domínio, tarefa e modelo',
       'A verificação cirúrgica substitui a revisão total — velocidade com segurança',
     ],
-    insight:
-      'Um operador de fronteira sabe exatamente onde confiar e onde verificar — essa precisão é o que gera velocidade com segurança.',
+    insight: 'Um operador de fronteira sabe exatamente onde confiar e onde verificar.',
   },
   {
     id: 'frontierops-calibracao',
-    icon: RefreshCw,
-    color: 'cyan' as const,
     tag: 'FrontierOps',
     title: 'A cada atualização de modelo, seus workflows precisam ser recalibrados',
-    lead: 'Modelos de IA evoluem trimestralmente. O que você validou em novembro pode ser obsoleto em fevereiro. Sub-calibrar desperdiça energia humana; sobre-calibrar cria riscos invisíveis.',
+    lead: 'Modelos de IA evoluem trimestralmente. O que você validou em novembro pode ser obsoleto em fevereiro.',
     highlights: [
       'Capacidades de IA mudam a cada release — o mapa de ontem não serve hoje',
       'Sub-calibração: você ainda faz manualmente o que a IA já domina',
       'Sobre-calibração: você confia na IA em áreas onde ela introduziu novas falhas',
     ],
-    insight:
-      'Calibração não é um evento — é uma prática. Quem não recalibra está operando com um mapa desatualizado.',
+    insight: 'Calibração não é um evento — é uma prática. Quem não recalibra está operando com um mapa desatualizado.',
   },
   {
     id: 'frontierops-atencao',
-    icon: Eye,
-    color: 'violet' as const,
     tag: 'FrontierOps',
     title: 'O desafio não é a IA produzir mais — é saber onde colocar atenção humana',
-    lead: 'Com agentes produzindo 10x mais output, o gargalo não é mais a produção — é a atenção humana. Revisar tudo com a mesma profundidade é o sintoma de quem não calibrou.',
+    lead: 'Com agentes produzindo 10x mais output, o gargalo não é mais a produção — é a atenção humana.',
     highlights: [
       'A razão output-para-atenção é a nova métrica de produtividade',
       'Atenção humana deve ser alocada por risco, não distribuída uniformemente',
       'Sucesso se mede pelo resultado entregue por unidade de atenção investida',
     ],
-    insight:
-      'Sucesso não se mede por horas trabalhadas, mas pela razão entre resultado entregue e atenção investida.',
+    insight: 'Sucesso não se mede por horas trabalhadas, mas pela razão entre resultado entregue e atenção investida.',
   },
 ];
 
-const colorMap: Record<string, { bg: string; text: string; border: string; dot: string }> = {
-  cyan: { bg: 'bg-gold-muted', text: 'text-gold', border: 'border-gold/20', dot: 'bg-gold' },
-  violet: { bg: 'bg-gold-muted', text: 'text-gold-light', border: 'border-gold/20', dot: 'bg-gold-light' },
-  emerald: { bg: 'bg-gold-muted', text: 'text-gold', border: 'border-gold/20', dot: 'bg-gold' },
-  amber: { bg: 'bg-gold-muted', text: 'text-gold-dark', border: 'border-gold/20', dot: 'bg-gold-dark' },
-};
-
 export default function Blog() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.fromTo(
+        titleRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
       const cards = cardsRef.current?.querySelectorAll('.blog-card');
       if (cards) {
         gsap.fromTo(
           cards,
-          { y: 40, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             duration: 0.6,
-            stagger: 0.1,
+            stagger: 0.06,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: cardsRef.current,
@@ -203,26 +187,25 @@ export default function Blog() {
     <section
       id="insights"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="py-20 md:py-28 border-b border-warm-border"
     >
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div ref={titleRef} className="mb-14 opacity-0">
+          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
+            <span className="w-8 h-px bg-gold" />
             Insights
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif font-normal text-white leading-tight mb-6">
-            O cenário da IA no Brasil em 2025-2026
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-white max-w-2xl mb-4">
+            O cenário da IA no Brasil em 2025–2026
           </h2>
-          <p className="text-lg text-text-secondary max-w-3xl mx-auto">
+          <p className="text-text-secondary max-w-2xl leading-relaxed">
             Dados e análises sobre adoção, custos, riscos e oportunidades para empresas
-            que querem ir além da experimentação e gerar resultado real com IA.
+            que querem ir além da experimentação.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div ref={cardsRef} className="space-y-0">
           {articles.map((article) => {
-            const colors = colorMap[article.color];
-            const Icon = article.icon;
             const isExpanded = expandedId === article.id;
 
             return (
@@ -230,80 +213,67 @@ export default function Blog() {
                 key={article.id}
                 type="button"
                 onClick={() => setExpandedId(isExpanded ? null : article.id)}
-                className={`blog-card card-warm rounded-2xl p-6 border ${colors.border} opacity-0 text-left transition-all duration-300 hover:scale-[1.02] ${
-                  isExpanded ? 'md:col-span-2 lg:col-span-3' : ''
-                }`}
+                className="blog-card opacity-0 w-full text-left border-t border-warm-border py-6 group transition-colors duration-300 block"
               >
-                {/* Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center`}>
-                    <Icon className={`w-5 h-5 ${colors.text}`} />
-                  </div>
-                  <span className={`text-xs font-semibold ${colors.text} uppercase tracking-wider px-2 py-0.5 rounded-full ${colors.bg}`}>
+                <div className="grid md:grid-cols-[8rem_1fr] gap-4 md:gap-8">
+                  <span className="text-xs tracking-[0.15em] uppercase text-text-muted font-medium pt-1">
                     {article.tag}
                   </span>
-                </div>
+                  <div>
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-2 group-hover:text-gold transition-colors duration-300 leading-snug">
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      {article.lead}
+                    </p>
 
-                {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
-                  {article.title}
-                </h3>
-
-                {/* Lead */}
-                <p className="text-sm text-text-secondary leading-relaxed mb-4">
-                  {article.lead}
-                </p>
-
-                {/* Expanded content */}
-                {isExpanded && (
-                  <div className="mt-4 pt-4 border-t border-warm-border">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-sm font-semibold text-white mb-3">Dados relevantes:</h4>
-                        <ul className="space-y-2">
-                          {article.highlights.map((h, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
-                              <span className={`w-1.5 h-1.5 rounded-full ${colors.dot} mt-1.5 flex-shrink-0`} />
-                              {h}
-                            </li>
-                          ))}
-                        </ul>
+                    {isExpanded && (
+                      <div className="mt-6 grid md:grid-cols-2 gap-8">
+                        <div>
+                          <h4 className="text-xs tracking-[0.15em] uppercase text-text-muted font-medium mb-3">
+                            Dados relevantes
+                          </h4>
+                          <ul className="space-y-2.5">
+                            {article.highlights.map((h, i) => (
+                              <li key={i} className="flex items-start gap-3 text-sm text-text-secondary">
+                                <span className="w-1 h-1 rounded-full bg-gold mt-2 flex-shrink-0" />
+                                {h}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="border-l border-warm-border pl-8">
+                          <h4 className="text-xs tracking-[0.15em] uppercase text-gold font-medium mb-3">
+                            Visão AINOVA
+                          </h4>
+                          <p className="text-sm text-text-primary leading-relaxed italic">
+                            &ldquo;{article.insight}&rdquo;
+                          </p>
+                        </div>
                       </div>
-                      <div className={`p-4 rounded-xl ${colors.bg} border ${colors.border}`}>
-                        <h4 className={`text-sm font-semibold ${colors.text} mb-2`}>Visão AIPF:</h4>
-                        <p className="text-sm text-text-primary leading-relaxed italic">
-                          "{article.insight}"
-                        </p>
-                      </div>
-                    </div>
+                    )}
+
+                    <span className="inline-flex items-center gap-1.5 text-xs text-text-muted group-hover:text-gold transition-colors mt-4">
+                      {isExpanded ? 'Fechar' : 'Ler mais'}
+                      <ArrowRight className={`w-3 h-3 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
+                    </span>
                   </div>
-                )}
-
-                {/* Read more indicator */}
-                <div className={`flex items-center gap-1 mt-3 text-xs ${colors.text} font-medium`}>
-                  {isExpanded ? 'Fechar' : 'Ver mais'}
-                  <ArrowRight className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* Source note */}
-        <div className="mt-10 text-center">
+        <div className="mt-10 pt-6 border-t border-warm-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-text-muted">
-            Dados baseados em pesquisas IBR, Brasscom, Gartner, Adobe e Microsoft (2024-2026).
+            Dados baseados em pesquisas IBR, Brasscom, Gartner, Adobe e Microsoft (2024–2026).
           </p>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-8 text-center">
           <button
             onClick={() => scrollToSection('cta')}
-            className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light font-medium transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-gold transition-colors"
           >
-            Quer entender como esses dados se aplicam ao seu negócio?
-            <ArrowRight className="w-4 h-4" />
+            Quer entender como isso se aplica ao seu negócio?
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

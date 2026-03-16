@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import AuroraBackground from './components/background/AuroraBackground';
-import RightRailNav from './components/navigation/RightRailNav';
+import TopNavbar from './components/navigation/TopNavbar';
 import ChatBubble from './components/chat/ChatBubble';
 
 import Hero from './sections/Hero';
+import ValueBar from './sections/ValueBar';
 import Problem from './sections/Problem';
 import Solution from './sections/Solution';
 import UseCases from './sections/UseCases';
@@ -20,10 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   useEffect(() => {
-    // Initialize smooth scrolling behavior
     document.documentElement.style.scrollBehavior = 'smooth';
-
-    // Refresh ScrollTrigger on load
     ScrollTrigger.refresh();
 
     return () => {
@@ -33,7 +30,6 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-warm-black">
-      {/* Skip to content - accessibility */}
       <a
         href="#solution"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-warm-black focus:rounded-lg focus:font-semibold focus:text-sm"
@@ -41,15 +37,11 @@ function App() {
         Pular para o conteúdo
       </a>
 
-      {/* Aurora Background */}
-      <AuroraBackground />
+      <TopNavbar />
 
-      {/* Navigation */}
-      <RightRailNav />
-
-      {/* Main Content */}
       <main className="relative z-10">
         <Hero />
+        <ValueBar />
         <Problem />
         <Solution />
         <UseCases />
@@ -60,7 +52,6 @@ function App() {
         <Footer />
       </main>
 
-      {/* Chat Assistant */}
       <ChatBubble />
     </div>
   );

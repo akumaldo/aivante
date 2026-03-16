@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { MessageCircle, Calendar, BarChart3, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
+import { scrollToSection } from '@/lib/utils';
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,7 +11,7 @@ export default function About() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         contentRef.current,
-        { y: 50, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -32,77 +33,70 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="py-20 md:py-28 border-b border-warm-border"
     >
-      <div className="container-custom">
-        <div
-          ref={contentRef}
-          className="max-w-4xl mx-auto card-warm rounded-3xl p-8 md:p-12 opacity-0"
-        >
-          <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div ref={contentRef} className="opacity-0">
+          <div className="grid lg:grid-cols-[280px_1fr] gap-12 lg:gap-16 items-start">
             {/* Photo */}
-            <div className="mx-auto md:mx-0">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl bg-gradient-to-br from-gold/30 via-gold-dark/30 to-gold-light/30 p-1">
+            <div>
+              <div className="w-48 h-48 lg:w-full lg:h-auto lg:aspect-square rounded-lg overflow-hidden border border-warm-border">
                 <img
                   src="/bruno-lunardi.png"
                   alt="Bruno Lunardi"
-                  className="w-full h-full rounded-xl object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
             {/* Content */}
             <div>
-              <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
+              <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
+                <span className="w-8 h-px bg-gold" />
                 Quem está por trás
               </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-white mb-2">
                 Bruno Lunardi
               </h2>
-              <p className="text-sm text-text-muted mb-4">Fundador da AIPF | Engenharia e Performance em IA</p>
-              <p className="text-text-secondary leading-relaxed mb-6">
+              <p className="text-sm text-text-muted mb-6">
+                Fundador da AINOVA &middot; Engenharia e Performance em IA
+              </p>
+              <p className="text-text-secondary leading-relaxed mb-8 max-w-xl">
                 A experiência lidando com sistemas de alta complexidade moldou a forma como
                 enxergo a Inteligência Artificial: ela precisa de base sólida e dar retorno claro.
                 Não sou um integrador de APIs. Construo e gerencio fluxos de IA focados em resolver
-                gargalos reais de negócio através do framework AIPF. O resultado é uma arquitetura
-                desenhada para oferecer precisão, controle de custos e impacto operacional imediato.
+                gargalos reais de negócio. O resultado é uma arquitetura desenhada para
+                oferecer precisão, controle de custos e impacto operacional imediato.
               </p>
 
-              {/* Services */}
-              <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                <div className="p-4 bg-warm-surface-raised rounded-xl">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Sparkles className="w-4 h-4 text-gold" />
-                    <span className="text-sm font-medium text-white">Engenharia de IA</span>
-                  </div>
+              <div className="grid sm:grid-cols-2 gap-6 mb-8 max-w-lg">
+                <div className="border-l-2 border-gold pl-4">
+                  <h3 className="text-sm font-semibold text-white mb-1">Engenharia de IA</h3>
                   <p className="text-xs text-text-muted">Do entendimento ao piloto em produção</p>
                 </div>
-                <div className="p-4 bg-warm-surface-raised rounded-xl">
-                  <div className="flex items-center gap-2 mb-2">
-                    <BarChart3 className="w-4 h-4 text-gold" />
-                    <span className="text-sm font-medium text-white">AI Performance Framework</span>
-                  </div>
+                <div className="border-l-2 border-warm-border pl-4">
+                  <h3 className="text-sm font-semibold text-white mb-1">AI Performance Framework</h3>
                   <p className="text-xs text-text-muted">Gate entre piloto e escala — 5 pilares</p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."
+                  href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AINOVA e gostaria de conversar."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-warm-surface-raised text-text-secondary hover:bg-warm-surface-hover hover:text-text-primary transition-colors text-sm"
+                  className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-gold transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp
                 </a>
-                <a
-                  href="#cta"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-muted text-gold hover:bg-gold/20 transition-colors text-sm"
+                <button
+                  onClick={() => scrollToSection('cta')}
+                  className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light transition-colors"
                 >
-                  <Calendar className="w-4 h-4" />
                   Agendar conversa
-                </a>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           </div>

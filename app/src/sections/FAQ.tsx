@@ -58,7 +58,7 @@ export default function FAQ() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         contentRef.current,
-        { y: 50, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -80,35 +80,38 @@ export default function FAQ() {
     <section
       id="faq"
       ref={sectionRef}
-      className="section-padding relative overflow-hidden"
+      className="py-20 md:py-28 border-b border-warm-border"
     >
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <span className="text-gold text-sm font-semibold tracking-wider uppercase mb-4 block">
-            FAQ
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-white leading-tight">
-            Perguntas frequentes
-          </h2>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
+          <div>
+            <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
+              <span className="w-8 h-px bg-gold" />
+              FAQ
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-white leading-tight">
+              Perguntas frequentes
+            </h2>
+          </div>
 
-        <div ref={contentRef} className="max-w-3xl mx-auto opacity-0">
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="card-warm rounded-xl border-0 px-6 data-[state=open]:border-gold/30 transition-colors"
-              >
-                <AccordionTrigger className="text-left text-text-primary hover:text-gold py-5 text-base font-medium hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-text-secondary pb-5 leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div ref={contentRef} className="opacity-0">
+            <Accordion type="single" collapsible className="space-y-0">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="border-t border-warm-border border-b-0 rounded-none px-0"
+                >
+                  <AccordionTrigger className="text-left text-text-primary hover:text-gold py-6 text-base font-medium hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-text-secondary pb-6 leading-relaxed text-sm">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </section>

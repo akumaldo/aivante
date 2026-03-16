@@ -1,49 +1,41 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { scrollToSection } from '@/lib/utils';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subheadlineRef = useRef<HTMLHeadingElement>(null);
-  const bodyRef = useRef<HTMLParagraphElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLDivElement>(null);
+  const subheadlineRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       tl.fromTo(
-        headlineRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1 }
+        badgeRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 }
       )
         .fromTo(
+          headlineRef.current,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.1 },
+          '-=0.5'
+        )
+        .fromTo(
           subheadlineRef.current,
-          { y: 50, opacity: 0 },
+          { y: 40, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.9 },
           '-=0.6'
         )
         .fromTo(
-          bodyRef.current,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8 },
-          '-=0.5'
-        )
-        .fromTo(
-          buttonsRef.current,
+          ctaRef.current,
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.7 },
           '-=0.4'
-        )
-        .fromTo(
-          servicesRef.current,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.3'
         );
     }, sectionRef);
 
@@ -54,90 +46,54 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="relative min-h-screen flex items-end overflow-hidden"
     >
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0A08]/50 pointer-events-none" />
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="/hero-cityscape.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlays for readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-warm-black/90 via-warm-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-warm-black via-warm-black/30 to-transparent" />
+      </div>
 
-      <div className="container-custom relative z-10 pt-20">
-        <div className="max-w-4xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-warm-border mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-            <span className="text-xs text-text-secondary font-medium tracking-wider uppercase">
-              Entendimento → Piloto → Escala
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 lg:pb-28 pt-32 w-full">
+        <div className="max-w-2xl">
+          <div ref={badgeRef} className="opacity-0 mb-8">
+            <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium">
+              <span className="w-8 h-px bg-gold" />
+              Entendimento &middot; Piloto &middot; Escala
             </span>
           </div>
 
           <h1
             ref={headlineRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light text-white leading-tight tracking-tight opacity-0"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-serif font-light text-white leading-[1.1] tracking-tight opacity-0"
           >
-            Sua IA precisa de engenharia,{' '}
-            <span className="text-gold italic">não de tentativa e erro.</span>
+            Engenharia de IA
+            <br />
+            <span className="text-gold italic">para resultados reais</span>
           </h1>
 
-          <h2
-            ref={subheadlineRef}
-            className="mt-6 text-xl sm:text-2xl md:text-3xl font-medium text-text-secondary leading-relaxed opacity-0"
-          >
-            Operamos IA como infraestrutura de performance — com processo estruturado, medição de resultados e calibração contínua na fronteira.
-          </h2>
-
           <p
-            ref={bodyRef}
-            className="mt-8 text-lg text-text-secondary max-w-2xl leading-relaxed opacity-0"
+            ref={subheadlineRef}
+            className="mt-8 text-lg lg:text-xl text-text-secondary leading-relaxed max-w-lg opacity-0"
           >
-            Do entendimento do seu cenário ao primeiro workflow em produção, medimos resultado real antes de escalar.
+            Operamos IA como infraestrutura de performance — com processo estruturado,
+            medição de resultados e calibração contínua na fronteira.
           </p>
 
-          <div ref={buttonsRef} className="mt-10 flex flex-col sm:flex-row gap-4 opacity-0">
-            <Button
-              size="lg"
-              className="bg-gold hover:bg-gold-light text-warm-black font-semibold px-8 py-6 text-base glow-gold transition-all duration-300 hover:scale-105"
+          <div ref={ctaRef} className="mt-10 opacity-0">
+            <button
               onClick={() => scrollToSection('cta')}
+              className="group inline-flex items-center gap-3 bg-white text-warm-black px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-gold hover:text-warm-black transition-all duration-300"
             >
               Agendar Conversa Exploratória
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-warm-border-light text-text-primary hover:border-gold hover:text-gold hover:bg-transparent px-8 py-6 text-base transition-all duration-300"
-              onClick={() => scrollToSection('solution')}
-            >
-              Nossa abordagem
-              <ChevronDown className="ml-2 w-5 h-5" />
-            </Button>
-          </div>
-
-          <p className="mt-6 text-sm text-text-muted">
-            Conversa inicial de 30 minutos para entender contexto, maturidade atual e prioridades.
-          </p>
-
-          {/* Framework highlight */}
-          <div ref={servicesRef} className="mt-16 opacity-0">
-            <button
-              type="button"
-              onClick={() => scrollToSection('solution')}
-              className="card-warm rounded-xl p-6 cursor-pointer transition-all group text-left w-full"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-gold-muted flex items-center justify-center flex-shrink-0 mt-1">
-                  <Sparkles className="w-5 h-5 text-gold" />
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-gold uppercase tracking-wider">
-                    Metodologia própria
-                  </span>
-                  <h3 className="text-lg font-bold text-white mb-1 group-hover:text-gold transition-colors">
-                    AI Performance Framework
-                  </h3>
-                  <p className="text-sm text-text-secondary">
-                    Medimos resultado real com nosso AI Performance Framework — 5 dimensões que separam IA que funciona de IA que apenas gera atividade.
-                  </p>
-                </div>
-              </div>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

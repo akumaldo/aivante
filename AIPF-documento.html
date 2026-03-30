@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>AIPF - AI Performance Framework | AIVANTE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: #e2e8f0;
+      background: #0f172a;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    @page { size: A4; margin: 0; }
+    .page {
+      width: 100%; max-width: 960px; margin: 0 auto;
+      padding: 56px 54px; min-height: 100vh; position: relative;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: avoid; }
+
+    /* Typography */
+    .tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #22d3ee; margin-bottom: 14px; }
+    h1 { font-size: 40px; font-weight: 800; color: #fff; line-height: 1.15; }
+    h2 { font-size: 30px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 10px; }
+    h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    p { font-size: 14px; color: #94a3b8; line-height: 1.65; }
+    .lead { font-size: 16px; line-height: 1.7; max-width: 640px; }
+
+    /* Common */
+    .divider { width: 60px; height: 3px; background: linear-gradient(90deg, #22d3ee, #8b5cf6); border-radius: 2px; margin: 20px 0; }
+    .card { background: rgba(30,41,59,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 24px; }
+    .card-sm { background: rgba(30,41,59,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 10px; }
+    .cyan { color: #22d3ee; } .violet { color: #8b5cf6; } .blue { color: #60a5fa; } .emerald { color: #34d399; } .amber { color: #fbbf24; }
+    .cyan-bg { background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.2); }
+    .violet-bg { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); }
+    .blue-bg { background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.2); }
+    .emerald-bg { background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); }
+    .amber-bg { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .flex-col { display: flex; flex-direction: column; gap: 12px; }
+    .mt-16 { margin-top: 16px; } .mt-20 { margin-top: 20px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
+
+    .metric-tag { font-size: 11px; padding: 4px 10px; border-radius: 6px; background: rgba(15,23,42,0.8); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.06); display: inline-block; margin: 2px; }
+    .check-item { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: #94a3b8; line-height: 1.5; margin-bottom: 6px; }
+    .check-icon { flex-shrink: 0; margin-top: 2px; }
+    .quote-box { border-left: 3px solid #22d3ee; padding: 16px 20px; background: rgba(34,211,238,0.03); border-radius: 0 10px 10px 0; }
+    .error-box { padding: 12px 16px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.1); border-radius: 10px; }
+    .error-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #f87171; }
+    .error-text { font-size: 12px; color: rgba(248,113,113,0.7); line-height: 1.5; }
+
+    .footer-line { position: absolute; bottom: 30px; left: 54px; right: 54px; display: flex; justify-content: space-between; font-size: 10px; color: #334155; }
+
+    /* Cover */
+    .cover { display: flex; flex-direction: column; justify-content: center; }
+    .cover h1 span { background: linear-gradient(135deg, #22d3ee, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .cover-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.2); border-radius: 20px; padding: 5px 14px; font-size: 11px; color: #22d3ee; font-weight: 600; width: fit-content; margin-bottom: 28px; }
+
+    /* Pillar page */
+    .pillar-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .pillar-num { font-size: 48px; font-weight: 800; opacity: 0.15; color: #22d3ee; line-height: 1; }
+    .pillar-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CAPA ===== -->
+  <div class="page cover">
+    <div class="cover-badge">AIPF &mdash; AI Performance Framework</div>
+    <h1>Uma linguagem executiva<br>para medir <span>IA em produção</span>.</h1>
+    <div class="divider"></div>
+    <p class="lead" style="margin-bottom: 32px;">
+      O AIPF (AI Performance Framework) foi criado para preencher uma lacuna do mercado:
+      não existia um modelo estruturado que conectasse produto, operação, finanças e governança
+      numa linguagem que executivos e times técnicos pudessem compartilhar.
+    </p>
+    <p class="lead" style="margin-bottom: 40px;">
+      Este documento apresenta o Framework completo: os 5 pilares, suas métricas,
+      perguntas executivas, exemplos práticos e como o AIPF se integra ao processo
+      de implementação da AIVANTE como gate entre piloto e escala.
+    </p>
+
+    <div class="grid-3 mt-32">
+      <div class="card-sm" style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 800; color: #22d3ee;">5</div>
+        <p style="font-size: 11px;">Pilares de avaliação</p>
+      </div>
+      <div class="card-sm" style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 800; color: #8b5cf6;">30</div>
+        <p style="font-size: 11px;">Métricas operacionais</p>
+      </div>
+      <div class="card-sm" style="text-align: center;">
+        <div style="font-size: 28px; font-weight: 800; color: #34d399;">15</div>
+        <p style="font-size: 11px;">Perguntas executivas</p>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>AIVANTE &mdash; Engenharia de IA para Empresas</span>
+      <span>Documento confidencial</span>
+    </div>
+  </div>
+
+  <!-- ===== POR QUE O AIPF ===== -->
+  <div class="page">
+    <span class="tag">Contexto</span>
+    <h2>Por que o AIPF existe</h2>
+    <div class="divider"></div>
+
+    <p class="lead mt-16" style="margin-bottom: 24px;">
+      O mercado brasileiro de IA atravessa um ponto de inflexão. 88% das organizações
+      já usam IA no dia a dia, mas apenas 39% reportam impacto real no lucro operacional.
+      A barreira não é mais tecnológica ou financeira — é de engenharia e medição.
+    </p>
+
+    <div class="grid-2 mt-24">
+      <div class="card">
+        <h4 class="cyan">O problema</h4>
+        <p>Empresas implementam IA sem definir como medir sucesso. Quando chega a hora de decidir
+        se escalam, a resposta é baseada em opinião, não em dados. Resultado: expansão prematura
+        ou abandono de projetos que estavam funcionando.</p>
+      </div>
+      <div class="card">
+        <h4 class="violet">A solução</h4>
+        <p>O AIPF fornece uma estrutura objetiva com 5 pilares que cobrem o ciclo completo:
+        da produtividade ao custo, do valor econômico à confiabilidade, da governança à compliance.
+        Um scorecard único para tomar a decisão de escalar.</p>
+      </div>
+    </div>
+
+    <div class="quote-box mt-24">
+      <p style="color: #e2e8f0; font-size: 15px; font-style: italic;">
+        "O AIPF não é um diagnóstico inicial. Ele é aplicado quando a IA já está em produção.
+        Mede o resultado real e gera a base de dados para decidir se faz sentido expandir."
+      </p>
+      <p style="font-size: 12px; color: #64748b; margin-top: 8px;">Bruno Lunardi, Fundador da AIVANTE</p>
+    </div>
+
+    <h3 class="mt-32">Quando o AIPF é aplicado</h3>
+    <div class="divider"></div>
+
+    <div style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
+      <div class="card-sm" style="flex: 1; text-align: center; border-color: rgba(34,211,238,0.2);">
+        <p style="font-size: 12px; font-weight: 600; color: #22d3ee;">Fase 1</p>
+        <p style="font-size: 13px; color: #fff; font-weight: 600;">Entendimento</p>
+      </div>
+      <span style="color: #334155; font-size: 18px;">&rarr;</span>
+      <div class="card-sm" style="flex: 1; text-align: center; border-color: rgba(139,92,246,0.2);">
+        <p style="font-size: 12px; font-weight: 600; color: #8b5cf6;">Fase 2</p>
+        <p style="font-size: 13px; color: #fff; font-weight: 600;">Piloto</p>
+      </div>
+      <span style="color: #334155; font-size: 18px;">&rarr;</span>
+      <div class="card-sm" style="flex: 1; text-align: center; border: 2px solid rgba(34,211,238,0.4); background: rgba(34,211,238,0.05);">
+        <div class="badge cyan cyan-bg" style="margin-bottom: 4px;">GATE</div>
+        <p style="font-size: 13px; color: #fff; font-weight: 700;">AIPF</p>
+      </div>
+      <span style="color: #334155; font-size: 18px;">&rarr;</span>
+      <div class="card-sm" style="flex: 1; text-align: center; border-color: rgba(52,211,153,0.2);">
+        <p style="font-size: 12px; font-weight: 600; color: #34d399;">Fase 3</p>
+        <p style="font-size: 13px; color: #fff; font-weight: 600;">Escala</p>
+      </div>
+    </div>
+
+    <p class="mt-16">O Framework entra após o piloto estar em produção. Ele avalia os resultados reais nos 5 pilares
+    e gera o scorecard que orienta a decisão: escalar, otimizar ou pivotar.</p>
+
+    <div class="footer-line">
+      <span>AIPF &mdash; AI Performance Framework</span>
+      <span>2</span>
+    </div>
+  </div>
+
+  <!-- ===== VISÃO GERAL DOS 5 PILARES ===== -->
+  <div class="page">
+    <span class="tag">Arquitetura</span>
+    <h2>Os 5 pilares do AIPF</h2>
+    <div class="divider"></div>
+    <p class="mt-16" style="margin-bottom: 28px;">
+      Cada pilar avalia uma dimensão crítica da operação de IA. Juntos, formam uma visão completa
+      que conecta produtividade, economia, valor de negócio, confiabilidade e governança.
+    </p>
+
+    <div class="flex-col">
+      <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="font-size: 32px; font-weight: 800; color: #22d3ee; opacity: 0.3; line-height: 1;">01</div>
+        <div>
+          <h3 style="font-size: 17px;">Intelligence Throughput <span class="cyan" style="font-size: 13px; font-weight: 400;">&mdash; Vazão de Inteligência</span></h3>
+          <p>A IA está produzindo trabalho útil concluído? Ou está gerando atividade sem resultado?
+          Este pilar mede a capacidade real de converter agentes e tokens em tarefas finalizadas com qualidade aceitável.</p>
+        </div>
+      </div>
+      <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="font-size: 32px; font-weight: 800; color: #8b5cf6; opacity: 0.3; line-height: 1;">02</div>
+        <div>
+          <h3 style="font-size: 17px;">Token ROI <span class="violet" style="font-size: 13px; font-weight: 400;">&mdash; Custo por Resultado</span></h3>
+          <p>Quanto custa cada resultado entregue? Não o token unitário, mas o custo completo incluindo
+          modelo, revisão humana, retrabalho e correções. A eficiência econômica real da operação.</p>
+        </div>
+      </div>
+      <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="font-size: 32px; font-weight: 800; color: #60a5fa; opacity: 0.3; line-height: 1;">03</div>
+        <div>
+          <h3 style="font-size: 17px;">Value Conversion Rate <span class="blue" style="font-size: 13px; font-weight: 400;">&mdash; Conversão em Valor</span></h3>
+          <p>A IA está gerando valor econômico real ou apenas artefatos? Receita, margem, capacidade liberada,
+          custo evitado. A ponte entre consumo de inteligência e impacto no negócio.</p>
+        </div>
+      </div>
+      <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="font-size: 32px; font-weight: 800; color: #34d399; opacity: 0.3; line-height: 1;">04</div>
+        <div>
+          <h3 style="font-size: 17px;">Operational Reliability <span class="emerald" style="font-size: 13px; font-weight: 400;">&mdash; Confiabilidade Operacional</span></h3>
+          <p>O negócio pode depender desta IA no dia a dia? Uptime, latência, fallback, observabilidade.
+          A diferença entre um experimento e uma operação que o negócio confia.</p>
+        </div>
+      </div>
+      <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div style="font-size: 32px; font-weight: 800; color: #fbbf24; opacity: 0.3; line-height: 1;">05</div>
+        <div>
+          <h3 style="font-size: 17px;">Governance & Compliance <span class="amber" style="font-size: 13px; font-weight: 400;">&mdash; Governança e Compliance</span></h3>
+          <p>Quem responde por quê? O processo é auditável? Rastreabilidade, gestão de risco, LGPD,
+          políticas de uso. A capacidade de escalar sem criar dívida regulatória.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>AIPF &mdash; AI Performance Framework</span>
+      <span>3</span>
+    </div>
+  </div>
+
+  <!-- ===== PILAR 01: THROUGHPUT ===== -->
+  <div class="page">
+    <div class="pillar-header">
+      <div class="pillar-num" style="color: #22d3ee;">01</div>
+      <div>
+        <span class="tag" style="margin-bottom: 4px;">Pilar 01</span>
+        <h2 style="margin-bottom: 2px;">Intelligence Throughput</h2>
+        <p class="cyan" style="font-size: 15px; font-weight: 500;">Vazão de Inteligência</p>
+      </div>
+    </div>
+
+    <div class="card mt-16">
+      <p style="font-size: 15px; color: #e2e8f0; line-height: 1.7;">
+        Capacidade de converter agentes, modelos e tokens em trabalho útil concluído,
+        com prioridade clara, desenho operacional e qualidade aceitável.
+        O foco não é volume de atividade, é resultado entregue.
+      </p>
+    </div>
+
+    <div class="section-label cyan mt-24">Perguntas executivas</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon cyan">&#9679;</span> A IA está aumentando capacidade real de execução?</div>
+      <div class="check-item"><span class="check-icon cyan">&#9679;</span> O fluxo está fluindo ou apenas gerando mais atividade?</div>
+      <div class="check-item"><span class="check-icon cyan">&#9679;</span> A validação humana virou gargalo?</div>
+    </div>
+
+    <div class="section-label cyan mt-24">Métricas</div>
+    <div style="margin-top: 4px;">
+      <span class="metric-tag">Tarefas concluídas por workflow</span>
+      <span class="metric-tag">% itens resolvidos IA + revisão humana</span>
+      <span class="metric-tag">Taxa de aceitação em primeira passada</span>
+      <span class="metric-tag">Tempo médio de fila por tarefa</span>
+      <span class="metric-tag">Retrabalho por workflow/agente</span>
+      <span class="metric-tag">Capacidade simultânea efetiva</span>
+    </div>
+
+    <div class="section-label cyan mt-24">Exemplos práticos</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon cyan">&rarr;</span> <strong style="color: #e2e8f0;">Atendimento:</strong> mais tickets processados por semana sem aumento de headcount, preservando SLA.</div>
+      <div class="check-item"><span class="check-icon cyan">&rarr;</span> <strong style="color: #e2e8f0;">Jurídico:</strong> contratos de baixo risco triados e sumarizados antes da revisão final.</div>
+      <div class="check-item"><span class="check-icon cyan">&rarr;</span> <strong style="color: #e2e8f0;">Operações:</strong> solicitações repetitivas fluem com IA + revisão humana, reduzindo backlog.</div>
+    </div>
+
+    <div class="error-box mt-24">
+      <div class="error-label">Erro comum</div>
+      <div class="error-text mt-16" style="margin-top: 4px;">Medir volume de prompts/tokens e não trabalho concluído com qualidade.</div>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; Pilar 01: Intelligence Throughput</span><span>4</span></div>
+  </div>
+
+  <!-- ===== PILAR 02: TOKEN ROI ===== -->
+  <div class="page">
+    <div class="pillar-header">
+      <div class="pillar-num" style="color: #8b5cf6;">02</div>
+      <div>
+        <span class="tag" style="margin-bottom: 4px;">Pilar 02</span>
+        <h2 style="margin-bottom: 2px;">Token ROI</h2>
+        <p class="violet" style="font-size: 15px; font-weight: 500;">Custo por Resultado</p>
+      </div>
+    </div>
+
+    <div class="card mt-16">
+      <p style="font-size: 15px; color: #e2e8f0; line-height: 1.7;">
+        Eficiência econômica do uso de IA: otimização do custo total por resultado entregue,
+        e não apenas do custo unitário por token. Inclui o custo de revisão humana, retrabalho e correções.
+      </p>
+    </div>
+
+    <div class="section-label violet mt-24">Perguntas executivas</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon violet">&#9679;</span> Estamos usando o modelo certo para cada tarefa?</div>
+      <div class="check-item"><span class="check-icon violet">&#9679;</span> O custo está otimizado no processo completo (incluindo revisão humana)?</div>
+      <div class="check-item"><span class="check-icon violet">&#9679;</span> Onde a IA está cara e sem retorno proporcional?</div>
+    </div>
+
+    <div class="section-label violet mt-24">Métricas</div>
+    <div style="margin-top: 4px;">
+      <span class="metric-tag">Cost per Outcome</span>
+      <span class="metric-tag">Custo por tarefa concluída</span>
+      <span class="metric-tag">Mix de modelos por workflow</span>
+      <span class="metric-tag">Taxa de escalonamento para premium</span>
+      <span class="metric-tag">Custo de retrabalho</span>
+      <span class="metric-tag">Custo total do processo (IA + humano)</span>
+    </div>
+
+    <div class="section-label violet mt-24">Exemplos práticos</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon violet">&rarr;</span> <strong style="color: #e2e8f0;">Comercial:</strong> modelos leves para triagem; premium apenas para casos complexos e exceções.</div>
+      <div class="check-item"><span class="check-icon violet">&rarr;</span> <strong style="color: #e2e8f0;">Regulatório:</strong> triagem econômica, sumário intermediário, análise crítica apenas com impacto material.</div>
+      <div class="check-item"><span class="check-icon violet">&rarr;</span> <strong style="color: #e2e8f0;">Backoffice:</strong> roteamento por complexidade reduz custo sem perda de qualidade.</div>
+    </div>
+
+    <div class="error-box mt-24">
+      <div class="error-label">Erro comum</div>
+      <div class="error-text" style="margin-top: 4px;">Otimizar custo por token e piorar custo por resultado (retrabalho, erro, latência).</div>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; Pilar 02: Token ROI</span><span>5</span></div>
+  </div>
+
+  <!-- ===== PILAR 03: VALUE CONVERSION ===== -->
+  <div class="page">
+    <div class="pillar-header">
+      <div class="pillar-num" style="color: #60a5fa;">03</div>
+      <div>
+        <span class="tag" style="margin-bottom: 4px;">Pilar 03</span>
+        <h2 style="margin-bottom: 2px;">Value Conversion Rate</h2>
+        <p class="blue" style="font-size: 15px; font-weight: 500;">Taxa de Conversão em Valor</p>
+      </div>
+    </div>
+
+    <div class="card mt-16">
+      <p style="font-size: 15px; color: #e2e8f0; line-height: 1.7;">
+        Taxa de conversão entre consumo de inteligência e impacto econômico real.
+        Receita, margem, capacidade liberada, redução de ciclo, custo evitado.
+        A ponte entre o que a IA produz e o que o negócio captura.
+      </p>
+    </div>
+
+    <div class="section-label blue mt-24">Perguntas executivas</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon blue">&#9679;</span> A IA está gerando valor de negócio ou apenas artefatos?</div>
+      <div class="check-item"><span class="check-icon blue">&#9679;</span> O ganho operacional está sendo capturado?</div>
+      <div class="check-item"><span class="check-icon blue">&#9679;</span> O uso de IA está se convertendo em resultado mensurável?</div>
+    </div>
+
+    <div class="section-label blue mt-24">Métricas</div>
+    <div style="margin-top: 4px;">
+      <span class="metric-tag">% saídas de IA efetivamente utilizadas</span>
+      <span class="metric-tag">% tarefas assistidas que chegam ao fim</span>
+      <span class="metric-tag">Redução de ciclo convertida em capacidade</span>
+      <span class="metric-tag">Receita incremental atribuível</span>
+      <span class="metric-tag">Cost avoidance</span>
+      <span class="metric-tag">Impacto em SLA, conversão, retenção, margem</span>
+    </div>
+
+    <div class="section-label blue mt-24">Exemplos práticos</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon blue">&rarr;</span> <strong style="color: #e2e8f0;">Vendas:</strong> drafts só geram valor quando viram propostas enviadas, fechamentos e receita.</div>
+      <div class="check-item"><span class="check-icon blue">&rarr;</span> <strong style="color: #e2e8f0;">Operação interna:</strong> resumos só capturam valor quando viram ações executadas com responsável e prazo.</div>
+      <div class="check-item"><span class="check-icon blue">&rarr;</span> <strong style="color: #e2e8f0;">Atendimento:</strong> redução de tempo só vira valor quando melhora SLA, retenção ou NPS.</div>
+    </div>
+
+    <div class="error-box mt-24">
+      <div class="error-label">Erro comum</div>
+      <div class="error-text" style="margin-top: 4px;">Parar na adoção sem fechar a ponte até resultado econômico.</div>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; Pilar 03: Value Conversion Rate</span><span>6</span></div>
+  </div>
+
+  <!-- ===== PILAR 04: RELIABILITY ===== -->
+  <div class="page">
+    <div class="pillar-header">
+      <div class="pillar-num" style="color: #34d399;">04</div>
+      <div>
+        <span class="tag" style="margin-bottom: 4px;">Pilar 04</span>
+        <h2 style="margin-bottom: 2px;">Operational Reliability</h2>
+        <p class="emerald" style="font-size: 15px; font-weight: 500;">Confiabilidade Operacional</p>
+      </div>
+    </div>
+
+    <div class="card mt-16">
+      <p style="font-size: 15px; color: #e2e8f0; line-height: 1.7;">
+        Confiabilidade da operação em produção: qualidade, latência, fallback, observabilidade,
+        escalabilidade e previsibilidade. A diferença entre um experimento e uma operação
+        na qual o negócio pode confiar no dia a dia.
+      </p>
+    </div>
+
+    <div class="section-label emerald mt-24">Perguntas executivas</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon emerald">&#9679;</span> O negócio pode depender dessa operação de IA no dia a dia?</div>
+      <div class="check-item"><span class="check-icon emerald">&#9679;</span> A solução se mantém estável sob carga?</div>
+      <div class="check-item"><span class="check-icon emerald">&#9679;</span> Existe plano de contingência quando há falha?</div>
+    </div>
+
+    <div class="section-label emerald mt-24">Métricas</div>
+    <div style="margin-top: 4px;">
+      <span class="metric-tag">Disponibilidade / uptime</span>
+      <span class="metric-tag">Latência p50 / p95 / p99</span>
+      <span class="metric-tag">Taxa de sucesso por etapa</span>
+      <span class="metric-tag">Fallback rate e fallback success rate</span>
+      <span class="metric-tag">Taxa de incidentes e regressões</span>
+      <span class="metric-tag">MTTR (tempo médio de recuperação)</span>
+    </div>
+
+    <div class="section-label emerald mt-24">Exemplos práticos</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon emerald">&rarr;</span> <strong style="color: #e2e8f0;">Atendimento digital:</strong> em picos, mantém latência aceitável e aciona contingência quando integração falha.</div>
+      <div class="check-item"><span class="check-icon emerald">&rarr;</span> <strong style="color: #e2e8f0;">Operação regulada:</strong> updates entram com testes de regressão, logs e runbooks.</div>
+      <div class="check-item"><span class="check-icon emerald">&rarr;</span> <strong style="color: #e2e8f0;">Produtos internos:</strong> alertas evitam descoberta de falhas apenas por reclamação do usuário final.</div>
+    </div>
+
+    <div class="error-box mt-24">
+      <div class="error-label">Erro comum</div>
+      <div class="error-text" style="margin-top: 4px;">Produção com mentalidade de experimento — sem SLO, sem observabilidade, sem owner.</div>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; Pilar 04: Operational Reliability</span><span>7</span></div>
+  </div>
+
+  <!-- ===== PILAR 05: GOVERNANCE ===== -->
+  <div class="page">
+    <div class="pillar-header">
+      <div class="pillar-num" style="color: #fbbf24;">05</div>
+      <div>
+        <span class="tag" style="margin-bottom: 4px;">Pilar 05</span>
+        <h2 style="margin-bottom: 2px;">Governance & Compliance</h2>
+        <p class="amber" style="font-size: 15px; font-weight: 500;">Governança e Compliance</p>
+      </div>
+    </div>
+
+    <div class="card mt-16">
+      <p style="font-size: 15px; color: #e2e8f0; line-height: 1.7;">
+        Capacidade de escalar IA com rastreabilidade, responsabilização, gestão de risco,
+        políticas de uso e aderência regulatória. Governança não é burocracia — é o que
+        diferencia IA corporativa de IA amadora. Fundamental para LGPD e PL 2338/2023.
+      </p>
+    </div>
+
+    <div class="section-label amber mt-24">Perguntas executivas</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon amber">&#9679;</span> Quem responde por quê?</div>
+      <div class="check-item"><span class="check-icon amber">&#9679;</span> O processo é auditável?</div>
+      <div class="check-item"><span class="check-icon amber">&#9679;</span> Os controles são proporcionais ao risco do caso de uso?</div>
+    </div>
+
+    <div class="section-label amber mt-24">Métricas</div>
+    <div style="margin-top: 4px;">
+      <span class="metric-tag">% workflows com trilha de auditoria</span>
+      <span class="metric-tag">% prompts/templates versionados</span>
+      <span class="metric-tag">% workflows com revisão humana definida</span>
+      <span class="metric-tag">Cobertura de classificação de dados sensíveis</span>
+      <span class="metric-tag">Taxa de violações de política</span>
+      <span class="metric-tag">Catálogo de modelos/agentes aprovados</span>
+    </div>
+
+    <div class="section-label amber mt-24">Exemplos práticos</div>
+    <div class="flex-col">
+      <div class="check-item"><span class="check-icon amber">&rarr;</span> <strong style="color: #e2e8f0;">RH:</strong> regras claras, revisão humana mandatória e critérios documentados.</div>
+      <div class="check-item"><span class="check-icon amber">&rarr;</span> <strong style="color: #e2e8f0;">Jurídico/Financeiro:</strong> rastrear origem, versão de modelo, validação humana e dados processados.</div>
+      <div class="check-item"><span class="check-icon amber">&rarr;</span> <strong style="color: #e2e8f0;">Compliance:</strong> casos de uso classificados por risco com controles proporcionais.</div>
+    </div>
+
+    <div class="error-box mt-24">
+      <div class="error-label">Erro comum</div>
+      <div class="error-text" style="margin-top: 4px;">Adicionar governança apenas depois da expansão (dívida de risco).</div>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; Pilar 05: Governance & Compliance</span><span>8</span></div>
+  </div>
+
+  <!-- ===== O SCORECARD ===== -->
+  <div class="page">
+    <span class="tag">Entregável</span>
+    <h2>O Scorecard AIPF</h2>
+    <div class="divider"></div>
+
+    <p class="lead mt-16" style="margin-bottom: 28px;">
+      Ao final da avaliação, o AIPF gera um scorecard que consolida a performance
+      do piloto nos 5 pilares. Este documento é a base para a decisão de escalar.
+    </p>
+
+    <div class="card mt-20">
+      <h4 class="cyan">O que o scorecard contém</h4>
+      <div class="flex-col mt-16">
+        <div class="check-item"><span class="check-icon cyan">&#10003;</span> <strong style="color: #e2e8f0;">Avaliação por pilar</strong> — Score e status de cada um dos 5 pilares com evidências</div>
+        <div class="check-item"><span class="check-icon cyan">&#10003;</span> <strong style="color: #e2e8f0;">Métricas operacionais</strong> — Dados reais coletados durante o piloto (custos, latência, throughput, etc.)</div>
+        <div class="check-item"><span class="check-icon cyan">&#10003;</span> <strong style="color: #e2e8f0;">KPIs executivos</strong> — Tradução das métricas técnicas em linguagem de negócio (ROI, capacidade, SLA)</div>
+        <div class="check-item"><span class="check-icon cyan">&#10003;</span> <strong style="color: #e2e8f0;">Gaps identificados</strong> — Onde o piloto precisa de otimização antes de escalar</div>
+        <div class="check-item"><span class="check-icon cyan">&#10003;</span> <strong style="color: #e2e8f0;">Recomendação</strong> — Escalar, otimizar ou pivotar — com justificativa baseada em dados</div>
+        <div class="check-item"><span class="check-icon cyan">&#10003;</span> <strong style="color: #e2e8f0;">Roadmap de expansão</strong> — Próximos processos priorizados por impacto e viabilidade</div>
+      </div>
+    </div>
+
+    <h3 class="mt-32">Três resultados possíveis</h3>
+    <div class="divider"></div>
+    <div class="grid-3 mt-20">
+      <div class="card" style="border-color: rgba(52,211,153,0.2);">
+        <div class="badge emerald emerald-bg" style="margin-bottom: 10px;">Escalar</div>
+        <p style="font-size: 12px;">Piloto validado nos 5 pilares. ROI comprovado. Governança adequada. Recomendação de expandir para novos processos priorizados pelo scorecard.</p>
+      </div>
+      <div class="card" style="border-color: rgba(251,191,36,0.2);">
+        <div class="badge amber amber-bg" style="margin-bottom: 10px;">Otimizar</div>
+        <p style="font-size: 12px;">Resultado positivo mas com gaps em 1-2 pilares. Recomendação de ajustar antes de escalar: custo, confiabilidade ou governança precisam de atenção.</p>
+      </div>
+      <div class="card" style="border-color: rgba(239,68,68,0.2);">
+        <div class="badge" style="color: #f87171; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); margin-bottom: 10px;">Pivotar</div>
+        <p style="font-size: 12px;">Piloto não entregou resultado suficiente para justificar expansão. Dados indicam necessidade de redefinir escopo, processo ou abordagem técnica.</p>
+      </div>
+    </div>
+
+    <div class="quote-box mt-24">
+      <p style="color: #e2e8f0; font-size: 14px; font-style: italic;">
+        "A expansão para novos processos é discutida como próximo passo com escopo
+        e investimento definidos separadamente — baseados em dados reais, não em suposições."
+      </p>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; AI Performance Framework</span><span>9</span></div>
+  </div>
+
+  <!-- ===== CONTATO ===== -->
+  <div class="page" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <span class="tag">Próximo passo</span>
+    <h2 style="font-size: 34px; max-width: 550px;">Quer aplicar o AIPF na sua operação?</h2>
+    <div class="divider" style="margin: 20px auto;"></div>
+    <p class="lead" style="text-align: center; max-width: 500px; margin-bottom: 36px;">
+      O primeiro passo é entender o seu cenário. Uma conversa de 30 minutos
+      para mapear seu momento e definir juntos por qual fase começar.
+    </p>
+
+    <div class="card" style="border: 2px solid rgba(34,211,238,0.3); background: rgba(34,211,238,0.03); max-width: 440px; text-align: center; padding: 32px;">
+      <h3>Conversa exploratória</h3>
+      <p style="margin-top: 8px;">contato@aivante.com.br</p>
+      <p>linkedin.com/company/aivante</p>
+    </div>
+
+    <div style="margin-top: 60px;">
+      <div style="font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 1px;">AIVANTE</div>
+      <p style="font-size: 11px; color: #64748b; margin-top: 4px;">Engenharia de IA para Empresas</p>
+    </div>
+
+    <div class="footer-line"><span>AIPF &mdash; AI Performance Framework</span><span>10</span></div>
+  </div>
+
+</body>
+</html>

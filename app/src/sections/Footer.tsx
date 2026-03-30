@@ -38,7 +38,7 @@ export default function Footer() {
               Insights
             </button>
             <a
-              href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AINOVA e gostaria de conversar."
+              href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-secondary hover:text-gold transition-colors"

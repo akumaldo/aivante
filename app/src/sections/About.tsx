@@ -59,10 +59,10 @@ export default function About() {
                 Bruno Lunardi
               </h2>
               <p className="text-sm text-text-muted mb-6">
-                Fundador da AINOVA &middot; Engenharia e Performance em IA
+                Fundador da AIPF &middot; Engenharia e Performance em IA
               </p>
               <p className="text-text-secondary leading-relaxed mb-8 max-w-xl">
-                A experiência lidando com sistemas de alta complexidade moldou a forma como
+                Framework desenvolvido em 2025, experiência lidando com sistemas de alta complexidade moldou a forma como
                 enxergo a Inteligência Artificial: ela precisa de base sólida e dar retorno claro.
                 Não sou um integrador de APIs. Construo e gerencio fluxos de IA focados em resolver
                 gargalos reais de negócio. O resultado é uma arquitetura desenhada para
@@ -82,7 +82,7 @@ export default function About() {
 
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AINOVA e gostaria de conversar."
+                  href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF gostaria de conversar."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-gold transition-colors"

@@ -79,7 +79,7 @@ export default function ValueBar() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 border-b border-warm-border"
+      className="py-14 md:py-20"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div ref={titleRef} className="mb-14 opacity-0">

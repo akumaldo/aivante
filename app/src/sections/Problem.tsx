@@ -90,22 +90,18 @@ export default function Problem() {
     <section
       id="problem"
       ref={sectionRef}
-      className="py-20 md:py-28 border-b border-warm-border"
+      className="py-24 md:py-36 bg-warm-surface"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div ref={titleRef} className="max-w-2xl mb-16 opacity-0">
-          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
-            <span className="w-8 h-px bg-gold" />
-            O cenário que você reconhece
-          </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-white leading-tight mb-6">
+        <div ref={titleRef} className="max-w-3xl mb-20 opacity-0">
+          <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-sans font-bold text-white leading-[1.1] tracking-tight mb-8">
             Sua empresa usa IA.
             <br />
-            Mas sabe se está funcionando?
+            <span className="text-text-secondary font-light">Mas sabe se está funcionando?</span>
           </h2>
-          <p className="text-text-secondary leading-relaxed">
+          <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
             88% das organizações brasileiras já usam IA no dia a dia. Apenas 39%
-            viram impacto real no lucro. O problema não é a tecnologia — é o que
+            viram impacto real no lucro. O problema não é a tecnologia; é o que
             acontece entre a adoção e o resultado.
           </p>
         </div>
@@ -114,20 +110,20 @@ export default function Problem() {
           {problems.map((problem) => (
             <div
               key={problem.number}
-              className="problem-item opacity-0 grid md:grid-cols-[3rem_1fr_1fr] gap-4 md:gap-8 py-8 border-t border-warm-border group"
+              className="problem-item opacity-0 grid md:grid-cols-[4rem_1fr_1fr] gap-4 md:gap-10 py-10 border-t border-warm-border group"
             >
-              <span className="text-sm font-mono text-text-muted self-start pt-0.5">
+              <span className="text-2xl font-mono text-sage/60 self-start font-light">
                 {problem.number}
               </span>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-gold transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-sage-light transition-colors duration-300">
                   {problem.title}
                 </h3>
                 <p className="text-sm text-text-secondary leading-relaxed">
                   {problem.description}
                 </p>
               </div>
-              <p className="text-sm text-text-muted leading-relaxed italic md:text-right">
+              <p className="text-sm text-text-muted leading-relaxed italic md:text-right md:pt-1">
                 {problem.stat}
               </p>
             </div>

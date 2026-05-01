@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { ArrowRight } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -80,15 +81,11 @@ export default function FAQ() {
     <section
       id="faq"
       ref={sectionRef}
-      className="py-20 md:py-28 border-b border-warm-border"
+      className="py-16 md:py-24 border-b border-warm-border"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
           <div>
-            <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
-              <span className="w-8 h-px bg-gold" />
-              FAQ
-            </span>
             <h2 className="text-3xl md:text-4xl font-serif font-light text-white leading-tight">
               Perguntas frequentes
             </h2>
@@ -102,7 +99,7 @@ export default function FAQ() {
                   value={`item-${index}`}
                   className="border-t border-warm-border border-b-0 rounded-none px-0"
                 >
-                  <AccordionTrigger className="text-left text-text-primary hover:text-gold py-6 text-base font-medium hover:no-underline">
+                  <AccordionTrigger className="text-left text-text-primary hover:text-sage-light py-6 text-base font-medium hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-text-secondary pb-6 leading-relaxed text-sm">
@@ -111,6 +108,19 @@ export default function FAQ() {
                 </AccordionItem>
               ))}
             </Accordion>
+
+            <div className="mt-10 pt-8 border-t border-warm-border">
+              <p className="text-text-secondary text-sm mb-4">
+                Tem outra pergunta? Converse diretamente com a gente.
+              </p>
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
+                className="group inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
+              >
+                Iniciar conversa
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

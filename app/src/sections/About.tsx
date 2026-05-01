@@ -51,10 +51,6 @@ export default function About() {
 
             {/* Content */}
             <div>
-              <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
-                <span className="w-8 h-px bg-gold" />
-                Quem está por trás
-              </span>
               <h2 className="text-3xl md:text-4xl font-serif font-light text-white mb-2">
                 Bruno Lunardi
               </h2>
@@ -62,21 +58,22 @@ export default function About() {
                 Fundador da AIPF &middot; Engenharia e Performance em IA
               </p>
               <p className="text-text-secondary leading-relaxed mb-8 max-w-xl">
-                Framework desenvolvido em 2025, experiência lidando com sistemas de alta complexidade moldou a forma como
+                Minha experiência em sistemas de alta complexidade moldou a forma como
                 enxergo a Inteligência Artificial: ela precisa de base sólida e dar retorno claro.
+                Por isso criei o AI Performance Framework em 2025.
                 Não sou um integrador de APIs. Construo e gerencio fluxos de IA focados em resolver
                 gargalos reais de negócio. O resultado é uma arquitetura desenhada para
                 oferecer precisão, controle de custos e impacto operacional imediato.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-6 mb-8 max-w-lg">
-                <div className="border-l-2 border-gold pl-4">
+              <div className="grid sm:grid-cols-2 gap-4 mb-8 max-w-lg">
+                <div className="bg-warm-surface rounded-lg px-5 py-4">
                   <h3 className="text-sm font-semibold text-white mb-1">Engenharia de IA</h3>
                   <p className="text-xs text-text-muted">Do entendimento ao piloto em produção</p>
                 </div>
-                <div className="border-l-2 border-warm-border pl-4">
+                <div className="bg-warm-surface rounded-lg px-5 py-4">
                   <h3 className="text-sm font-semibold text-white mb-1">AI Performance Framework</h3>
-                  <p className="text-xs text-text-muted">Gate entre piloto e escala — 5 pilares</p>
+                  <p className="text-xs text-text-muted">Gate entre piloto e escala, 5 pilares</p>
                 </div>
               </div>
 
@@ -85,14 +82,14 @@ export default function About() {
                   href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF gostaria de conversar."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-gold transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
                 >
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp
                 </a>
                 <button
                   onClick={() => scrollToSection('cta')}
-                  className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-gold hover:text-gold-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
                 >
                   Agendar conversa
                   <ArrowRight className="w-3.5 h-3.5" />

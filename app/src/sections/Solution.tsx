@@ -96,16 +96,16 @@ export default function Solution() {
     <section
       id="solution"
       ref={sectionRef}
-      className="py-20 md:py-28 border-b border-warm-border"
+      className="py-24 md:py-32 border-b border-warm-border"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Opening */}
         <div className="solution-block mb-20 opacity-0">
-          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
-            <span className="w-8 h-px bg-gold" />
+          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-sage-light font-medium mb-6">
+            <span className="w-12 h-px bg-sage" />
             Nossa abordagem
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-white mb-6 max-w-xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white mb-6 max-w-xl">
             Como transformamos IA em resultado
           </h2>
           <p className="text-text-secondary max-w-2xl leading-relaxed">
@@ -125,7 +125,7 @@ export default function Solution() {
                 key={phase.number}
                 className="bg-warm-black p-8 group hover:bg-warm-surface transition-colors duration-300"
               >
-                <span className="text-xs font-mono text-gold tracking-wider mb-4 block">
+                <span className="text-xs font-mono text-sage tracking-wider mb-4 block">
                   FASE {phase.number}
                 </span>
                 <h4 className="text-xl font-serif font-light text-white mb-3">
@@ -143,8 +143,7 @@ export default function Solution() {
         <div className="solution-block mb-24 opacity-0">
           <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
             <div>
-              <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-4">
-                <span className="w-8 h-px bg-gold" />
+              <span className="text-xs tracking-[0.2em] uppercase text-text-muted font-medium mb-4 block">
                 AI Performance Framework
               </span>
               <h3 className="text-2xl md:text-3xl font-serif font-light text-white mb-4">
@@ -161,11 +160,11 @@ export default function Solution() {
                   key={idx}
                   className="flex gap-6 py-5 border-t border-warm-border group"
                 >
-                  <span className="text-xs font-mono text-text-muted pt-0.5 w-6 flex-shrink-0">
+                  <span className="text-lg font-mono text-sage/50 pt-0.5 w-8 flex-shrink-0 font-light">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h4 className="text-base font-semibold text-white mb-1 group-hover:text-gold transition-colors duration-300">
+                    <h4 className="text-base font-semibold text-white mb-1 group-hover:text-sage-light transition-colors duration-300">
                       {pillar.title}
                     </h4>
                     <p className="text-sm text-text-secondary leading-relaxed">
@@ -181,8 +180,7 @@ export default function Solution() {
         {/* FrontierOps */}
         <div className="solution-block opacity-0">
           <div className="mb-10">
-            <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-4">
-              <span className="w-8 h-px bg-gold" />
+            <span className="text-xs tracking-[0.2em] uppercase text-text-muted font-medium mb-4 block">
               Frontier Operations
             </span>
             <h3 className="text-2xl md:text-3xl font-serif font-light text-white mb-4 max-w-lg">
@@ -200,7 +198,7 @@ export default function Solution() {
                 key={idx}
                 className="border border-warm-border rounded-lg p-8 hover:border-warm-border-light transition-colors duration-300 group"
               >
-                <h4 className="text-lg font-semibold text-white mb-3 group-hover:text-gold transition-colors duration-300">
+                <h4 className="text-lg font-semibold text-white mb-3 group-hover:text-sage-light transition-colors duration-300">
                   {concept.title}
                 </h4>
                 <p className="text-sm text-text-secondary leading-relaxed mb-6">
@@ -208,9 +206,9 @@ export default function Solution() {
                 </p>
                 <button
                   onClick={() => scrollToSection('cta')}
-                  className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-gold transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
                 >
-                  Saiba mais
+                  Agendar conversa
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

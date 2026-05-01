@@ -9,31 +9,32 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <button
             onClick={() => scrollToSection('hero')}
-            className="hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
+            aria-label="Voltar ao topo"
           >
             <img
               src="/logo-full.png"
-              alt="AINOVA"
+              alt="AIPF"
               className="h-14"
             />
           </button>
 
-          <nav className="flex flex-wrap items-center gap-8 text-sm">
+          <nav className="flex flex-wrap items-center gap-8 text-sm" aria-label="Navegação do rodapé">
             <button
               onClick={() => scrollToSection('solution')}
-              className="text-text-secondary hover:text-gold transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
             >
               Solução
             </button>
             <button
               onClick={() => scrollToSection('use-cases')}
-              className="text-text-secondary hover:text-gold transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
             >
               Aplicações
             </button>
             <button
               onClick={() => scrollToSection('insights')}
-              className="text-text-secondary hover:text-gold transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
             >
               Insights
             </button>
@@ -41,7 +42,7 @@ export default function Footer() {
               href="https://wa.me/5511973582931?text=Olá! Vim pelo site da AIPF e gostaria de conversar."
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-gold transition-colors"
+              className="text-text-secondary hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
             >
               Contato
             </a>
@@ -50,7 +51,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-warm-border">
           <p className="text-text-muted text-xs">
-            &copy; {currentYear} AIPF — Integração e Performance. Todos os direitos reservados.
+            &copy; {currentYear} AIPF — Engenharia e Performance em IA. Todos os direitos reservados.
           </p>
         </div>
       </div>

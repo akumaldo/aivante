@@ -20,7 +20,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
     ScrollTrigger.refresh();
 
     return () => {
@@ -31,7 +30,7 @@ function App() {
   return (
     <div className="relative min-h-screen bg-warm-black">
       <a
-        href="#solution"
+        href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-warm-black focus:rounded-lg focus:font-semibold focus:text-sm"
       >
         Pular para o conteúdo
@@ -39,14 +38,14 @@ function App() {
 
       <TopNavbar />
 
-      <main className="relative z-10">
+      <main id="main" className="relative z-10">
         <Hero />
         <ValueBar />
         <Problem />
         <Solution />
         <UseCases />
-        <Blog />
         <CTA />
+        <Blog />
         <FAQ />
         <About />
         <Footer />

@@ -36,34 +36,28 @@ export default function CTA() {
     <section
       id="cta"
       ref={sectionRef}
-      className="py-24 md:py-36 border-b border-warm-border"
+      className="py-28 md:py-44"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div ref={contentRef} className="max-w-2xl mx-auto text-center opacity-0">
-          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-8 justify-center">
-            <span className="w-8 h-px bg-gold" />
-            Primeiro passo
-            <span className="w-8 h-px bg-gold" />
-          </span>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-white leading-tight mb-6">
-            Vamos entender seu cenário
+        <div ref={contentRef} className="max-w-2xl opacity-0">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white leading-[1.1] mb-8">
+            Vamos entender<br />seu cenário
           </h2>
 
-          <p className="text-lg text-text-secondary leading-relaxed mb-10 max-w-lg mx-auto">
+          <p className="text-lg text-text-secondary leading-relaxed mb-12 max-w-md">
             Converse com nosso assistente para descobrir como IA estruturada
             pode gerar resultados reais no seu negócio.
           </p>
 
           <button
             onClick={openChat}
-            className="group inline-flex items-center gap-3 bg-white text-warm-black px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-gold hover:text-warm-black transition-all duration-300"
+            className="group inline-flex items-center gap-3 bg-white text-warm-black px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-gold hover:text-warm-black transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08]"
           >
             Iniciar conversa
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <p className="text-sm text-text-muted mt-6">
+          <p className="text-sm text-text-muted mt-8">
             Sem formulários. Uma conversa rápida e personalizada.
           </p>
         </div>

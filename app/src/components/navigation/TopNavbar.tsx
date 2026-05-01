@@ -34,11 +34,11 @@ export default function TopNavbar() {
           {/* Logo */}
           <button
             onClick={() => scrollToSection('hero')}
-            className="hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
           >
             <img
               src="/logo-navbar.png"
-              alt="AINOVA"
+              alt="AIPF"
               className="h-8 lg:h-10"
             />
           </button>
@@ -49,7 +49,7 @@ export default function TopNavbar() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm text-text-secondary hover:text-white transition-colors duration-200 tracking-wide"
+                className="text-sm text-text-secondary hover:text-white transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
               >
                 {link.label}
               </button>

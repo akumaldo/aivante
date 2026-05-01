@@ -38,10 +38,12 @@
     --gold-light: #D4B87A;
     --gold-dark: #A8893E;
     --gold-muted: rgba(200, 164, 94, 0.12);
-    --gold-glow: rgba(200, 164, 94, 0.06);
+    --sage: #7B8D7E;
+    --sage-light: #94A697;
+    --sage-muted: rgba(123, 141, 126, 0.15);
     --text-primary: #F2EDE6;
     --text-secondary: #A09888;
-    --text-muted: #6B6156;
+    --text-muted: #8A7E72;
   }
 }
 
@@ -66,28 +68,6 @@
     color: var(--gold);
   }
 
-  .card-warm {
-    background: var(--surface);
-    border: 1px solid var(--border-warm);
-    transition: all 0.3s ease;
-  }
-
-  .card-warm:hover {
-    border-color: var(--gold-dark);
-    box-shadow: 0 0 20px var(--gold-glow);
-  }
-
-  .glow-gold {
-    box-shadow: 0 0 20px rgba(200, 164, 94, 0.15), 0 0 40px rgba(200, 164, 94, 0.05);
-  }
-
-  .section-padding {
-    @apply py-24 md:py-32;
-  }
-
-  .container-custom {
-    @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
 }
 
 /* Custom scrollbar */
@@ -106,36 +86,6 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-light);
-}
-
-/* Animation utilities */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
 }
 
 @keyframes slide-up {

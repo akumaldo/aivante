@@ -47,7 +47,6 @@ module.exports = {
           light: '#D4B87A',
           dark: '#A8893E',
           muted: 'rgba(200, 164, 94, 0.12)',
-          glow: 'rgba(200, 164, 94, 0.06)',
         },
         warm: {
           black: '#0A0A08',
@@ -58,20 +57,15 @@ module.exports = {
           border: '#2A2621',
           'border-light': '#3D382F',
         },
+        sage: {
+          DEFAULT: '#7B8D7E',
+          light: '#94A697',
+          muted: 'rgba(123, 141, 126, 0.15)',
+        },
         text: {
           primary: '#F2EDE6',
           secondary: '#A09888',
-          muted: '#6B6156',
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+          muted: '#8A7E72',
         },
       },
       borderRadius: {

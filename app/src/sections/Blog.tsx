@@ -140,6 +140,8 @@ export default function Blog() {
   const titleRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const visibleArticles = showAll ? articles : articles.slice(0, 3);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -183,16 +185,28 @@ export default function Blog() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    if (!showAll || !cardsRef.current) return;
+    const cards = cardsRef.current.querySelectorAll('.blog-card');
+    const newCards = Array.from(cards).slice(3);
+    if (newCards.length > 0) {
+      gsap.fromTo(
+        newCards,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power3.out' }
+      );
+    }
+  }, [showAll]);
+
   return (
     <section
       id="insights"
       ref={sectionRef}
-      className="py-20 md:py-28 border-b border-warm-border"
+      className="py-16 md:py-24 border-b border-warm-border"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div ref={titleRef} className="mb-14 opacity-0">
-          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
-            <span className="w-8 h-px bg-gold" />
+          <span className="text-xs tracking-[0.2em] uppercase text-text-muted font-medium mb-6 block">
             Insights
           </span>
           <h2 className="text-3xl md:text-4xl font-serif font-light text-white max-w-2xl mb-4">
@@ -205,7 +219,7 @@ export default function Blog() {
         </div>
 
         <div ref={cardsRef} className="space-y-0">
-          {articles.map((article) => {
+          {visibleArticles.map((article) => {
             const isExpanded = expandedId === article.id;
 
             return (
@@ -220,7 +234,7 @@ export default function Blog() {
                     {article.tag}
                   </span>
                   <div>
-                    <h3 className="text-base md:text-lg font-semibold text-white mb-2 group-hover:text-gold transition-colors duration-300 leading-snug">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-2 group-hover:text-sage-light transition-colors duration-300 leading-snug">
                       {article.title}
                     </h3>
                     <p className="text-sm text-text-secondary leading-relaxed">
@@ -236,15 +250,15 @@ export default function Blog() {
                           <ul className="space-y-2.5">
                             {article.highlights.map((h, i) => (
                               <li key={i} className="flex items-start gap-3 text-sm text-text-secondary">
-                                <span className="w-1 h-1 rounded-full bg-gold mt-2 flex-shrink-0" />
+                                <span className="w-1 h-1 rounded-full bg-sage mt-2 flex-shrink-0" />
                                 {h}
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div className="border-l border-warm-border pl-8">
-                          <h4 className="text-xs tracking-[0.15em] uppercase text-gold font-medium mb-3">
-                            Visão AINOVA
+                          <h4 className="text-xs tracking-[0.15em] uppercase text-sage font-medium mb-3">
+                            Visão AIPF
                           </h4>
                           <p className="text-sm text-text-primary leading-relaxed italic">
                             &ldquo;{article.insight}&rdquo;
@@ -253,7 +267,7 @@ export default function Blog() {
                       </div>
                     )}
 
-                    <span className="inline-flex items-center gap-1.5 text-xs text-text-muted group-hover:text-gold transition-colors mt-4">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-text-muted group-hover:text-sage-light transition-colors mt-4">
                       {isExpanded ? 'Fechar' : 'Ler mais'}
                       <ArrowRight className={`w-3 h-3 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
                     </span>
@@ -264,13 +278,22 @@ export default function Blog() {
           })}
         </div>
 
+        {!showAll && articles.length > 3 && (
+          <button
+            onClick={() => setShowAll(true)}
+            className="mt-6 text-sm text-text-secondary hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
+          >
+            Ver todos os insights ({articles.length})
+          </button>
+        )}
+
         <div className="mt-10 pt-6 border-t border-warm-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-text-muted">
-            Dados baseados em pesquisas IBR, Brasscom, Gartner, Adobe e Microsoft (2024–2026).
+            Dados baseados em pesquisas IBR, Brasscom, Gartner, Adobe e Microsoft (2024-2026).
           </p>
           <button
             onClick={() => scrollToSection('cta')}
-            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-gold transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
           >
             Quer entender como isso se aplica ao seu negócio?
             <ArrowRight className="w-3.5 h-3.5" />

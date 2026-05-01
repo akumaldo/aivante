@@ -298,7 +298,8 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
       {showScrollDown && (
         <button
           onClick={scrollToBottom}
-          className="absolute bottom-16 left-1/2 -translate-x-1/2 p-1.5 rounded-full bg-warm-surface border border-warm-border shadow-lg z-10"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-warm-surface border border-warm-border shadow-lg z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
+          aria-label="Rolar para baixo"
         >
           <ArrowDown className="w-3.5 h-3.5 text-text-secondary" />
         </button>

@@ -53,6 +53,7 @@ export default function Hero() {
         <img
           src="/hero-cityscape.png"
           alt=""
+          loading="eager"
           className="w-full h-full object-cover"
         />
         {/* Dark overlays for readability */}
@@ -64,19 +65,19 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 lg:pb-28 pt-32 w-full">
         <div className="max-w-2xl">
           <div ref={badgeRef} className="opacity-0 mb-8">
-            <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium">
-              <span className="w-8 h-px bg-gold" />
+            <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-sage-light font-medium">
+              <span className="w-12 h-px bg-sage" />
               Entendimento &middot; Piloto &middot; Escala
             </span>
           </div>
 
           <h1
             ref={headlineRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-serif font-light text-white leading-[1.1] tracking-tight opacity-0"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-serif font-light text-white leading-[1.05] tracking-tight opacity-0"
           >
             Engenharia de IA
             <br />
-            <span className="text-gold italic">para resultados reais</span>
+            <span className="text-gold italic font-normal">para resultados reais</span>
           </h1>
 
           <p
@@ -90,7 +91,7 @@ export default function Hero() {
           <div ref={ctaRef} className="mt-10 opacity-0">
             <button
               onClick={() => scrollToSection('cta')}
-              className="group inline-flex items-center gap-3 bg-white text-warm-black px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-gold hover:text-warm-black transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-white text-warm-black px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-gold hover:text-warm-black transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08]"
             >
               Agendar Conversa Exploratória
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

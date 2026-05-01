@@ -93,12 +93,11 @@ export default function UseCases() {
     <section
       id="use-cases"
       ref={sectionRef}
-      className="py-20 md:py-28 border-b border-warm-border"
+      className="py-20 md:py-28"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div ref={titleRef} className="mb-14 opacity-0">
-          <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">
-            <span className="w-8 h-px bg-gold" />
+          <span className="text-xs tracking-[0.2em] uppercase text-text-muted font-medium mb-6 block">
             Áreas de aplicação
           </span>
           <h2 className="text-3xl md:text-4xl font-serif font-light text-white max-w-xl">
@@ -112,7 +111,7 @@ export default function UseCases() {
               key={index}
               className="usecase-card bg-warm-black p-8 opacity-0 group hover:bg-warm-surface transition-colors duration-300"
             >
-              <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-gold transition-colors duration-300">
+              <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-sage-light transition-colors duration-300">
                 {useCase.title}
               </h3>
               <p className="text-sm text-text-secondary leading-relaxed mb-6">
@@ -122,7 +121,7 @@ export default function UseCases() {
                 {useCase.metrics.map((metric, i) => (
                   <span
                     key={i}
-                    className="text-xs text-text-muted border border-warm-border rounded-full px-3 py-1"
+                    className="text-xs text-sage border border-sage/20 rounded-full px-3 py-1"
                   >
                     {metric}
                   </span>
@@ -130,9 +129,9 @@ export default function UseCases() {
               </div>
               <button
                 onClick={() => scrollToSection('cta')}
-                className="inline-flex items-center gap-1.5 text-sm text-text-muted group-hover:text-gold transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm text-text-muted group-hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
               >
-                Saiba mais
+                Conversar sobre isso
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>

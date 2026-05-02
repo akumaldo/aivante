@@ -70,15 +70,16 @@ export default function Solution() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.solution-block').forEach((block) => {
+      gsap.utils.toArray<HTMLElement>('.solution-block').forEach((block, i) => {
         gsap.fromTo(
           block,
-          { y: 40, opacity: 0 },
+          { y: i === 0 ? 40 : 0, opacity: 0, scale: i === 0 ? 1 : 0.97 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
+            scale: 1,
+            duration: i === 0 ? 0.8 : 0.7,
+            ease: i === 0 ? 'power3.out' : 'power4.out',
             scrollTrigger: {
               trigger: block,
               start: 'top 85%',
@@ -176,6 +177,8 @@ export default function Solution() {
             </div>
           </div>
         </div>
+
+        <div className="w-16 h-px bg-warm-border-light mx-auto my-4" />
 
         {/* FrontierOps */}
         <div className="solution-block opacity-0">

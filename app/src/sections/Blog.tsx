@@ -165,13 +165,12 @@ export default function Blog() {
       if (cards) {
         gsap.fromTo(
           cards,
-          { y: 30, opacity: 0 },
+          { opacity: 0 },
           {
-            y: 0,
             opacity: 1,
-            duration: 0.6,
-            stagger: 0.06,
-            ease: 'power3.out',
+            duration: 0.8,
+            stagger: 0.08,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: cardsRef.current,
               start: 'top 80%',
@@ -256,7 +255,7 @@ export default function Blog() {
                             ))}
                           </ul>
                         </div>
-                        <div className="border-l border-warm-border pl-8">
+                        <div className="border-t border-warm-border pt-6 md:border-t-0 md:pt-0 md:border-l md:pl-8">
                           <h4 className="text-xs tracking-[0.15em] uppercase text-sage font-medium mb-3">
                             Visão AIPF
                           </h4>

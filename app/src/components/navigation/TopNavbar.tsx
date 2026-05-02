@@ -13,12 +13,32 @@ const navLinks = [
 export default function TopNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    );
+
+    navLinks.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -35,6 +55,7 @@ export default function TopNavbar() {
           <button
             onClick={() => scrollToSection('hero')}
             className="hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
+            aria-label="Voltar ao topo"
           >
             <img
               src="/logo-navbar.png"
@@ -49,7 +70,11 @@ export default function TopNavbar() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm text-text-secondary hover:text-white transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1"
+                className={`text-sm transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded px-1 ${
+                  activeSection === link.id
+                    ? 'text-white'
+                    : 'text-text-secondary hover:text-white'
+                }`}
               >
                 {link.label}
               </button>
@@ -59,8 +84,9 @@ export default function TopNavbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden flex flex-col gap-1.5 p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded"
             aria-label="Menu"
+            aria-expanded={mobileOpen}
           >
             <span className={`block w-6 h-0.5 bg-text-primary transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`block w-6 h-0.5 bg-text-primary transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
@@ -80,7 +106,11 @@ export default function TopNavbar() {
                   scrollToSection(link.id);
                   setMobileOpen(false);
                 }}
-                className="text-left text-base text-text-secondary hover:text-white transition-colors py-2 border-b border-warm-border/50"
+                className={`text-left text-base transition-colors py-2 border-b border-warm-border/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A08] rounded ${
+                  activeSection === link.id
+                    ? 'text-white'
+                    : 'text-text-secondary hover:text-white'
+                }`}
               >
                 {link.label}
               </button>

@@ -234,7 +234,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
         </div>
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg hover:bg-warm-surface transition-colors"
+          className="p-2.5 rounded-lg hover:bg-warm-surface transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
           aria-label="Fechar chat"
         >
           <X className="w-4 h-4 text-text-secondary" />
@@ -283,7 +283,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
               <button
                 key={reply.value}
                 onClick={() => handleQuickReply(reply)}
-                className="px-3 py-1.5 rounded-full text-xs font-medium border border-gold/30 text-gold hover:bg-gold-muted hover:border-gold/50 transition-all"
+                className="px-4 py-2 rounded-full text-xs font-medium border border-gold/30 text-gold hover:bg-gold-muted hover:border-gold/50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
               >
                 {reply.label}
               </button>
@@ -322,7 +322,7 @@ export default function ChatWindow({ onClose }: { onClose: () => void }) {
         <button
           type="submit"
           disabled={!input.trim() || isLoading}
-          className="p-2 rounded-xl bg-gold text-warm-black hover:bg-gold-light disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="p-2.5 rounded-xl bg-gold text-warm-black hover:bg-gold-light disabled:opacity-30 disabled:cursor-not-allowed transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70"
           aria-label="Enviar mensagem"
         >
           {isLoading ? (
